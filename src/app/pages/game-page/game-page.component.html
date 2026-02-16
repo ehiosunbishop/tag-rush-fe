@@ -1,63 +1,516 @@
-<div class="mx-auto max-w-6xl px-4 py-8 md:px-8">
-  <header class="mb-8 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-neutral-700 bg-black/70 p-4">
-    <div>
-      <p class="text-xs uppercase tracking-[0.18em] text-neutral-300">Live Match</p>
-      <h1 class="mt-1 text-2xl font-bold text-white">Welcome, {{ player?.nickname }}</h1>
-    </div>
+<div class="relative overflow-hidden bg-black text-white">
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.16),_transparent_52%)]"></div>
+  <div class="absolute inset-0 opacity-[0.08] bg-[linear-gradient(transparent_0,transparent_24px,white_25px)] bg-[size:100%_25px]"></div>
 
-    <div class="flex items-center gap-2">
-      <a
-        routerLink="/leaderboard"
-        class="rounded-lg border border-neutral-600 px-3 py-2 text-sm text-neutral-200 transition hover:border-white hover:text-white"
-      >
-        Full Leaderboard
-      </a>
-      <button
-        type="button"
-        (click)="signOut()"
-        class="rounded-lg border border-neutral-600 px-3 py-2 text-sm text-neutral-200 transition hover:border-white hover:text-white"
-      >
-        Sign Out
-      </button>
-    </div>
-  </header>
-
-  <div class="grid gap-6 lg:grid-cols-[2fr_1fr]">
-    <section class="rounded-2xl border border-neutral-700 bg-black/70 p-6">
-      <p class="text-sm text-neutral-300">
-        Tap fast and claim tokens before your opponents. Every claim updates rankings in near real-time.
+  <main class="relative mx-auto max-w-6xl space-y-14 px-4 py-10 md:px-8 md:py-14">
+    <section class="relative rounded-3xl border border-white/20 bg-gradient-to-br from-black via-neutral-900 to-black p-8 shadow-2xl md:p-12">
+      <p class="text-xs uppercase tracking-[0.22em] text-neutral-300">Payinto Launch Event</p>
+      <h1 class="mt-3 max-w-3xl text-4xl font-black leading-tight text-white md:text-6xl">
+        The Payment Operations Event for Teams That Ship Fast
+      </h1>
+      <p class="mt-4 max-w-3xl text-sm text-neutral-300 md:text-base">
+        This launch experience introduces the Payinto platform, the people behind it, and practical
+        playbooks for building cleaner payment workflows
+        <button
+          type="button"
+          (click)="openClaimModal('#launch')"
+          [disabled]="isFound('#launch')"
+          class="secret-word"
+        >
+          #launch
+        </button>
+        for modern
+        <button
+          type="button"
+          (click)="openClaimModal('#fintech')"
+          [disabled]="isFound('#fintech')"
+          class="secret-word"
+        >
+          #fintech
+        </button>
+        teams with
+        <button
+          type="button"
+          (click)="openClaimModal('$boost')"
+          [disabled]="isFound('$boost')"
+          class="secret-word"
+        >
+          $boost
+        </button>
+        momentum, precise
+        <button
+          type="button"
+          (click)="openClaimModal(':route')"
+          [disabled]="isFound(':route')"
+          class="secret-word"
+        >
+          :route
+        </button>
+        planning, and clearer execution.
       </p>
 
-      <div class="mt-6 flex flex-wrap gap-3">
-        <app-word-token
-          *ngFor="let word of words"
-          [wordId]="word.wordId"
-          [label]="word.label"
-          (tokenClick)="openClaimModal($event)"
-        ></app-word-token>
+      <div class="mt-7 flex flex-wrap gap-3">
+        <a
+          href="https://payinto.co"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rounded-full bg-white px-6 py-3 text-sm font-bold text-black transition hover:bg-neutral-200"
+        >
+          Visit payinto.co
+        </a>
+        <a
+          href="#agenda"
+          class="rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:border-white"
+        >
+          View Event Agenda
+        </a>
       </div>
     </section>
 
-    <aside class="rounded-2xl border border-neutral-700 bg-black/70 p-6">
-      <h2 class="text-lg font-semibold text-white">Top Players</h2>
-      <p class="mt-1 text-xs text-neutral-400">Auto-refreshes every 3 seconds</p>
+    <section class="relative grid gap-6 rounded-3xl border border-white/15 bg-neutral-950/90 p-8 md:grid-cols-2 md:p-10">
+      <div>
+        <p class="text-xs uppercase tracking-[0.2em] text-neutral-400">About The App</p>
+        <h2 class="mt-2 text-3xl font-bold text-white">What Payinto Does</h2>
+        <p class="mt-3 text-neutral-300">
+          Payinto is designed for teams that need a dependable way to collect, track, and operate
+          around digital payments without bloated workflows
+          <button
+            type="button"
+            (click)="openClaimModal('@payinto')"
+            [disabled]="isFound('@payinto')"
+            class="secret-word"
+          >
+            @payinto
+          </button>
+          while keeping
+          <button
+            type="button"
+            (click)="openClaimModal('@payments')"
+            [disabled]="isFound('@payments')"
+            class="secret-word"
+          >
+            @payments
+          </button>
+          reliable through
+          <button
+            type="button"
+            (click)="openClaimModal('.pulse')"
+            [disabled]="isFound('.pulse')"
+            class="secret-word"
+          >
+            .pulse
+          </button>
+          checks and
+          <button
+            type="button"
+            (click)="openClaimModal(',quiet')"
+            [disabled]="isFound(',quiet')"
+            class="secret-word"
+          >
+            ,quiet
+          </button>
+          operational handoffs.
+        </p>
+      </div>
 
-      <ol class="mt-4 space-y-2">
-        <li
-          *ngFor="let entry of topPlayers; index as i"
-          class="flex items-center justify-between rounded-lg border border-neutral-700 bg-neutral-900/60 px-3 py-2"
+      <div class="grid gap-3">
+        <article
+          *ngFor="let highlight of appHighlights"
+          class="rounded-xl border border-white/15 bg-black px-4 py-3 text-sm text-neutral-200"
         >
-          <span class="text-sm text-neutral-100">{{ i + 1 }}. {{ entry.nickname }}</span>
-          <span class="text-sm font-semibold text-white">{{ entry.score }}</span>
-        </li>
-      </ol>
+          {{ highlight }}
+        </article>
+      </div>
+    </section>
 
-      @if (!topPlayers.length) {
-        <p class="mt-4 text-sm text-neutral-400">Waiting for leaderboard data...</p>
-      }
-    </aside>
-  </div>
+    <section id="agenda" class="relative rounded-3xl border border-white/15 bg-neutral-950/85 p-8 md:p-10">
+      <p class="text-xs uppercase tracking-[0.2em] text-neutral-400">Event Agenda</p>
+      <h2 class="mt-2 text-3xl font-bold text-white">Program Schedule</h2>
+      <p class="mt-2 text-sm text-neutral-400">
+        The agenda is intentionally practical with short, high-value sessions
+        <button
+          type="button"
+          (click)="openClaimModal('#agenda')"
+          [disabled]="isFound('#agenda')"
+          class="secret-word"
+        >
+          #agenda
+        </button>
+        that map to
+        <button
+          type="button"
+          (click)="openClaimModal('@velocity')"
+          [disabled]="isFound('@velocity')"
+          class="secret-word"
+        >
+          @velocity
+        </button>
+        goals, low
+        <button
+          type="button"
+          (click)="openClaimModal('.latency')"
+          [disabled]="isFound('.latency')"
+          class="secret-word"
+        >
+          .latency
+        </button>
+        loops, and stronger
+        <button
+          type="button"
+          (click)="openClaimModal(':signal')"
+          [disabled]="isFound(':signal')"
+          class="secret-word"
+        >
+          :signal
+        </button>
+        discipline.
+      </p>
+      <div class="mt-6 space-y-3">
+        <article
+          *ngFor="let item of eventAgenda"
+          class="rounded-xl border border-white/15 bg-black/80 p-4 md:flex md:items-start md:gap-6"
+        >
+          <p class="min-w-24 text-sm font-semibold text-white">{{ item.time }}</p>
+          <div class="mt-1 md:mt-0">
+            <h3 class="text-base font-semibold text-white">{{ item.title }}</h3>
+            <p class="mt-1 text-sm text-neutral-300">{{ item.detail }}</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="relative space-y-5">
+      <div>
+        <p class="text-xs uppercase tracking-[0.2em] text-neutral-400">Speakers</p>
+        <h2 class="mt-2 text-3xl font-bold text-white">Featured Event Lineup</h2>
+        <p class="mt-2 text-sm text-neutral-300">
+          Click any speaker image to open a dedicated page with their session topic and discussion
+          points
+          <button
+            type="button"
+            (click)="openClaimModal('@speaker')"
+            [disabled]="isFound('@speaker')"
+            class="secret-word"
+          >
+            @speaker
+          </button>
+          with operator-ready
+          <button
+            type="button"
+            (click)="openClaimModal('#merchant')"
+            [disabled]="isFound('#merchant')"
+            class="secret-word"
+          >
+            #merchant
+          </button>
+          context and tighter
+          <button
+            type="button"
+            (click)="openClaimModal('$margin')"
+            [disabled]="isFound('$margin')"
+            class="secret-word"
+          >
+            $margin
+          </button>
+          outcomes.
+        </p>
+      </div>
+
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <article
+          *ngFor="let speaker of speakers"
+          class="rounded-2xl border border-white/15 bg-neutral-950 p-5 transition hover:-translate-y-1 hover:border-white/50"
+        >
+          <a [routerLink]="['/speakers', speaker.id]" class="block">
+            <img
+              [src]="speaker.image"
+              [alt]="speaker.name"
+              class="h-52 w-full rounded-xl border border-white/15 object-cover grayscale"
+            />
+          </a>
+          <h3 class="mt-4 text-xl font-semibold text-white">{{ speaker.name }}</h3>
+          <p class="mt-1 text-sm text-neutral-300">{{ speaker.title }}</p>
+          <p class="mt-2 text-sm text-neutral-400">{{ speaker.topic }}</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="relative rounded-3xl border border-white/15 bg-neutral-950/90 p-8 md:p-10">
+      <p class="text-xs uppercase tracking-[0.2em] text-neutral-400">Why Attend</p>
+      <h2 class="mt-2 text-3xl font-bold text-white">What You Will Leave With</h2>
+      <div class="mt-6 grid gap-3 md:grid-cols-3">
+        <article class="rounded-xl border border-white/15 bg-black px-4 py-4 text-sm text-neutral-200">
+          A concrete view of how Payinto fits into real business payment operations and
+          <button
+            type="button"
+            (click)="openClaimModal('@settlement')"
+            [disabled]="isFound('@settlement')"
+            class="secret-word"
+          >
+            @settlement
+          </button>
+          visibility with
+          <button
+            type="button"
+            (click)="openClaimModal(':ledger')"
+            [disabled]="isFound(':ledger')"
+            class="secret-word"
+          >
+            :ledger
+          </button>
+          context.
+        </article>
+        <article class="rounded-xl border border-white/15 bg-black px-4 py-4 text-sm text-neutral-200">
+          A framework for
+          <button
+            type="button"
+            (click)="openClaimModal('@onboarding')"
+            [disabled]="isFound('@onboarding')"
+            class="secret-word"
+          >
+            @onboarding
+          </button>
+          , payment monitoring, and post-launch reliability planning.
+        </article>
+        <article class="rounded-xl border border-white/15 bg-black px-4 py-4 text-sm text-neutral-200">
+          Direct
+          <button
+            type="button"
+            (click)="openClaimModal('@insights')"
+            [disabled]="isFound('@insights')"
+            class="secret-word"
+          >
+            @insights
+          </button>
+          from leaders building and scaling payment products in the field with fewer
+          <button
+            type="button"
+            (click)="openClaimModal(',delta')"
+            [disabled]="isFound(',delta')"
+            class="secret-word"
+          >
+            ,delta
+          </button>
+          surprises.
+        </article>
+      </div>
+    </section>
+
+    <section class="relative grid gap-6 rounded-3xl border border-white/15 bg-neutral-950/90 p-8 md:grid-cols-2 md:p-10">
+      <div>
+        <p class="text-xs uppercase tracking-[0.2em] text-neutral-400">Logistics</p>
+        <h2 class="mt-2 text-3xl font-bold text-white">Event Details</h2>
+        <div class="mt-4 space-y-3 text-sm text-neutral-300">
+          <p><span class="font-semibold text-white">Format:</span> Hybrid launch session</p>
+          <p><span class="font-semibold text-white">Access:</span> Registered attendees only</p>
+          <p>
+            <span class="font-semibold text-white">Duration:</span> Half-day program +
+            <button
+              type="button"
+              (click)="openClaimModal('#network')"
+              [disabled]="isFound('#network')"
+              class="secret-word"
+            >
+              #network
+            </button>
+          </p>
+          <p>
+            <span class="font-semibold text-white">Host:</span> Payinto product and leadership team focused on
+            <button
+              type="button"
+              (click)="openClaimModal('#compliance')"
+              [disabled]="isFound('#compliance')"
+              class="secret-word"
+            >
+              #compliance
+            </button>
+            and scale with
+            <button
+              type="button"
+              (click)="openClaimModal(':vault')"
+              [disabled]="isFound(':vault')"
+              class="secret-word"
+            >
+              :vault
+            </button>
+            readiness.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <p class="text-xs uppercase tracking-[0.2em] text-neutral-400">How To Join</p>
+        <h3 class="mt-2 text-2xl font-bold text-white">Registration Steps</h3>
+        <ol class="mt-4 space-y-2 text-sm text-neutral-300">
+          <li class="rounded-lg border border-white/15 bg-black px-3 py-2">1. Review product context at payinto.co.</li>
+          <li class="rounded-lg border border-white/15 bg-black px-3 py-2">
+            2. Choose sessions you care about most and prioritize
+            <button
+              type="button"
+              (click)="openClaimModal('#reconcile')"
+              [disabled]="isFound('#reconcile')"
+              class="secret-word"
+            >
+              #reconcile
+            </button>
+            workflows.
+          </li>
+          <li class="rounded-lg border border-white/15 bg-black px-3 py-2">
+            3. Attend live and ask practical implementation questions
+            <button
+              type="button"
+              (click)="openClaimModal('@eventday')"
+              [disabled]="isFound('@eventday')"
+              class="secret-word"
+            >
+              @eventday
+            </button>
+            with
+            <button
+              type="button"
+              (click)="openClaimModal('#dashboard')"
+              [disabled]="isFound('#dashboard')"
+              class="secret-word"
+            >
+              #dashboard
+            </button>
+            examples.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="relative rounded-3xl border border-white/15 bg-neutral-950/90 p-8 md:p-10">
+      <p class="text-xs uppercase tracking-[0.2em] text-neutral-400">FAQ</p>
+      <h2 class="mt-2 text-3xl font-bold text-white">Common Questions</h2>
+      <div class="mt-6 space-y-3">
+        <article *ngFor="let item of faqs" class="rounded-xl border border-white/15 bg-black p-4">
+          <h3 class="text-sm font-semibold text-white">{{ item.question }}</h3>
+          <p class="mt-2 text-sm text-neutral-300">
+            {{ item.answer }}
+            @if (item.question === 'Can I access materials after the event?') {
+              <button
+                type="button"
+                (click)="openClaimModal('#questions')"
+                [disabled]="isFound('#questions')"
+                class="secret-word"
+              >
+                #questions
+              </button>
+            } @else if (item.question === 'Who should attend?') {
+              <button
+                type="button"
+                (click)="openClaimModal('#merchant')"
+                [disabled]="isFound('#merchant')"
+                class="secret-word"
+              >
+                #merchant
+              </button>
+            } @else if (item.question === 'How do I learn more before launch day?') {
+              <button
+                type="button"
+                (click)="openClaimModal('.pulse')"
+                [disabled]="isFound('.pulse')"
+                class="secret-word"
+              >
+                .pulse
+              </button>
+            }
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="relative rounded-3xl border border-white/20 bg-gradient-to-br from-white to-neutral-200 p-8 text-black md:p-10">
+      <p class="text-xs uppercase tracking-[0.2em] text-black/60">Final Call</p>
+      <h2 class="mt-2 text-3xl font-bold">Join The Payinto Launch Experience</h2>
+      <p class="mt-3 max-w-3xl text-sm text-black/75">
+        Explore the product, learn from the team, and leave with clear ideas for improving your
+        payment stack
+        <button
+          type="button"
+          (click)="openClaimModal('@checkout')"
+          [disabled]="isFound('@checkout')"
+          class="secret-word"
+        >
+          @checkout
+        </button>
+        and faster
+        <button
+          type="button"
+          (click)="openClaimModal('@settlement')"
+          [disabled]="isFound('@settlement')"
+          class="secret-word"
+        >
+          @settlement
+        </button>
+        cycles, plus cleaner
+        <button
+          type="button"
+          (click)="openClaimModal(':ledger')"
+          [disabled]="isFound(':ledger')"
+          class="secret-word"
+        >
+          :ledger
+        </button>
+        stories for operators.
+      </p>
+      <a
+        href="https://payinto.co"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-6 inline-flex rounded-full bg-black px-6 py-3 text-sm font-bold text-white transition hover:bg-neutral-800"
+      >
+        Explore Payinto
+      </a>
+    </section>
+  </main>
 </div>
+
+@if (showBonusModal) {
+  <div class="fixed inset-0 z-40 flex items-center justify-center bg-black/80 p-4">
+    <section class="w-full max-w-md rounded-2xl border border-white/20 bg-neutral-950 p-6">
+      <div class="flex items-start justify-between gap-3">
+        <div>
+          <p class="text-xs uppercase tracking-[0.2em] text-neutral-400">{{ bonusTitle }}</p>
+          <h2 class="mt-1 text-xl font-semibold text-white">Tap An Icon To Reveal A Word</h2>
+        </div>
+        <button
+          type="button"
+          (click)="closeBonusModal()"
+          class="rounded-lg border border-white/25 px-3 py-1 text-sm text-neutral-300 hover:border-white hover:text-white"
+        >
+          Close
+        </button>
+      </div>
+
+      <div class="mt-5 grid grid-cols-3 gap-3">
+        <button
+          *ngFor="let icon of bonusIcons"
+          type="button"
+          (click)="revealBonusWord()"
+          class="rounded-xl border border-white/20 bg-black px-3 py-4 text-center text-sm text-white hover:border-white"
+        >
+          <p class="text-lg font-bold">{{ icon.symbol }}</p>
+          <p class="mt-1 text-xs uppercase tracking-[0.14em] text-neutral-300">{{ icon.label }}</p>
+        </button>
+      </div>
+
+      @if (revealedBonusWord) {
+        <p class="mt-5 text-sm text-neutral-300">
+          Hidden word unlocked:
+          <button
+            type="button"
+            (click)="claimBonusWord()"
+            class="secret-word font-semibold"
+          >
+            {{ revealedBonusWord }}
+          </button>
+        </p>
+      }
+    </section>
+  </div>
+}
 
 @if (selectedWord) {
   <app-claim-word-modal
@@ -69,7 +522,7 @@
 }
 
 @if (toastMessage) {
-  <div class="fixed bottom-6 right-6 rounded-lg border border-white/30 bg-white/10 px-4 py-3 text-sm text-white shadow-xl">
+  <div class="fixed bottom-6 right-6 z-50 rounded-lg border border-white/30 bg-black/95 px-4 py-3 text-sm text-white shadow-xl">
     {{ toastMessage }}
   </div>
 }
