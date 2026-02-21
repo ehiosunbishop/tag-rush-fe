@@ -204,9 +204,7 @@ export class GamePageComponent implements OnInit, OnDestroy {
     }
 
     this.selectedWord = null;
-    this.toastService.success(
-      `${response.word} claimed (+${response.pointsAwarded}). Progress ${this.foundWords.size}/${this.hiddenWords.length}`,
-    );
+    this.toastService.success(`${response.word} claimed (+${response.pointsAwarded}).`);
 
     this.scheduleNextBonusPopup();
   }

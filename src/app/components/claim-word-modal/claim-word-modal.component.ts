@@ -14,6 +14,8 @@ import { ToastService } from '../../shared/toast/toast.service';
   styleUrl: './claim-word-modal.component.css',
 })
 export class ClaimWordModalComponent {
+  private readonly acceptedSymbols = ['!', '@', '#', '$', '%'];
+
   @Input({ required: true }) word!: string;
   @Input({ required: true }) label!: string;
 
@@ -70,8 +72,9 @@ export class ClaimWordModalComponent {
       return `${error.error?.word ?? this.word} was already claimed.`;
     }
 
-    if (error.status === 422 && Array.isArray(error.error?.acceptedSymbols)) {
-      return `Invalid symbol. Supported: ${error.error.acceptedSymbols.join(', ')}`;
+    const apiMessage = error.error?.message;
+    if (error.status === 422 || apiMessage === 'Invalid word symbol') {
+      return `Invalid symbol. Supported: ${this.acceptedSymbols.join(', ')}`;
     }
 
     if (error.status === 401) {

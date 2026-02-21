@@ -64,9 +64,7 @@ export class SpeakerDetailPageComponent implements OnInit, OnDestroy {
       this.foundWords.add(this.selectedWord.label);
     }
     this.selectedWord = null;
-    this.toastService.success(
-      `${response.word} claimed (+${response.pointsAwarded}). Progress ${this.foundWords.size}/${this.hiddenWords.length}`,
-    );
+    this.toastService.success(`${response.word} claimed (+${response.pointsAwarded}).`);
   }
 
   isFound(word: string): boolean {
