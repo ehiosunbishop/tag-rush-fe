@@ -1,5 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, DestroyRef, effect, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 import { LeaderboardEntry } from '../../models/leaderboard.models';
 import { LeaderboardService } from '../../services/leaderboard.service';
@@ -10,22 +10,67 @@ import { LeaderboardService } from '../../services/leaderboard.service';
   templateUrl: './leaderboard-page.component.html',
   styleUrl: './leaderboard-page.component.css',
 })
-export class LeaderboardPageComponent implements OnInit, OnDestroy {
-  leaderboard: LeaderboardEntry[] = [];
-  isLoading = true;
+export class LeaderboardPageComponent {
+  private readonly destroyRef = inject(DestroyRef);
+  private hasFirstEmission = false;
+  private previousScores = new Map<string, number>();
+  private clearHighlightTimeout?: ReturnType<typeof setTimeout>;
 
-  private leaderboardSubscription?: Subscription;
+  readonly leaderboard;
+  readonly isLoading = signal(true);
+  readonly highlightedNicknames = signal<Set<string>>(new Set());
 
-  constructor(private readonly leaderboardService: LeaderboardService) {}
+  constructor(private readonly leaderboardService: LeaderboardService) {
+    this.leaderboard = toSignal(this.leaderboardService.pollLeaderboard(), {
+      initialValue: [] as LeaderboardEntry[],
+    });
 
-  ngOnInit(): void {
-    this.leaderboardSubscription = this.leaderboardService.pollLeaderboard(3000).subscribe((entries) => {
-      this.leaderboard = entries;
-      this.isLoading = false;
+    effect(() => {
+      const entries = this.leaderboard();
+
+      if (!this.hasFirstEmission) {
+        this.hasFirstEmission = true;
+        this.isLoading.set(false);
+        this.previousScores = new Map(entries.map((player) => [player.nickname, player.score]));
+        return;
+      }
+
+      const changed = new Set<string>();
+      for (const player of entries) {
+        const previous = this.previousScores.get(player.nickname);
+        if (previous !== undefined && previous !== player.score) {
+          changed.add(player.nickname);
+        }
+      }
+
+      this.previousScores = new Map(entries.map((player) => [player.nickname, player.score]));
+
+      if (!changed.size) {
+        return;
+      }
+
+      this.highlightedNicknames.set(changed);
+      if (this.clearHighlightTimeout) {
+        clearTimeout(this.clearHighlightTimeout);
+      }
+
+      this.clearHighlightTimeout = setTimeout(() => {
+        this.highlightedNicknames.set(new Set());
+      }, 650);
+    });
+
+    this.destroyRef.onDestroy(() => {
+      if (this.clearHighlightTimeout) {
+        clearTimeout(this.clearHighlightTimeout);
+      }
     });
   }
 
-  ngOnDestroy(): void {
-    this.leaderboardSubscription?.unsubscribe();
+  trackByNickname(_: number, player: LeaderboardEntry): string {
+    return player.nickname;
+  }
+
+  isHighlighted(nickname: string): boolean {
+    return this.highlightedNicknames().has(nickname);
   }
 }

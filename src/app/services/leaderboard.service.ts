@@ -13,7 +13,7 @@ export class LeaderboardService {
     return this.http.get<LeaderboardEntry[]>(apiUrl('/leaderboard'));
   }
 
-  pollLeaderboard(intervalMs = 8000): Observable<LeaderboardEntry[]> {
+  pollLeaderboard(intervalMs = 3000): Observable<LeaderboardEntry[]> {
     return timer(0, intervalMs).pipe(
       switchMap(() => this.getLeaderboard().pipe(catchError(() => of([])))),
       shareReplay({ bufferSize: 1, refCount: true }),

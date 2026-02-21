@@ -15,26 +15,32 @@
   </div>
 
   <section class="rounded-2xl border border-neutral-700 bg-black/70 p-4 md:p-6">
-    @if (isLoading) {
+    @if (isLoading()) {
       <p class="text-sm text-neutral-400">Loading leaderboard...</p>
     } @else {
-      <ol class="space-y-3">
-        <li
-          *ngFor="let player of leaderboard; index as i"
-          class="flex items-center justify-between rounded-xl border border-neutral-700 bg-neutral-900/60 px-4 py-3"
-        >
-          <div class="flex items-center gap-3">
-            <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-sm font-semibold text-white">
-              {{ i + 1 }}
-            </span>
-            <span class="font-medium text-neutral-100">{{ player.nickname }}</span>
-          </div>
-          <span class="text-base font-bold text-white">{{ player.score }}</span>
-        </li>
-      </ol>
+      <div class="overflow-x-auto">
+        <table class="min-w-full table-auto border-collapse text-left text-sm">
+          <thead>
+            <tr class="border-b border-neutral-700 text-neutral-300">
+              <th class="px-3 py-2 font-semibold">Rank</th>
+              <th class="px-3 py-2 font-semibold">Player</th>
+              <th class="px-3 py-2 text-right font-semibold">Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (player of leaderboard(); track trackByNickname($index, player); let i = $index) {
+              <tr class="leaderboard-row border-b border-neutral-800" [class.leaderboard-row-updated]="isHighlighted(player.nickname)">
+                <td class="px-3 py-3 text-neutral-200">{{ i + 1 }}</td>
+                <td class="px-3 py-3 font-medium text-neutral-100">{{ player.nickname }}</td>
+                <td class="px-3 py-3 text-right font-bold text-white">{{ player.score }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
 
-      @if (!leaderboard.length) {
-        <p class="text-sm text-neutral-400">No claims yet. Start the game and claim first.</p>
+      @if (!leaderboard().length) {
+        <p class="mt-3 text-sm text-neutral-400">No claims yet. Start the game and claim first.</p>
       }
     }
   </section>
