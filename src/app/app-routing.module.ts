@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'product-details', component: ProductDetailsPageComponent },
   { path: 'speakers', component: SpeakersPageComponent },
   { path: 'speakers/:id', component: SpeakerDetailPageComponent, canActivate: [AuthGuard] },
-  { path: 'leaderboard', component: LeaderboardPageComponent, canActivate: [AuthGuard] },
+  { path: 'leaderboard', component: LeaderboardPageComponent },
   { path: '**', redirectTo: '' },
 ];
 
