@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, map, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 import { Player, SignInResponse } from '../models/auth.models';
 
@@ -13,15 +13,11 @@ export class AuthService {
 
   constructor(private readonly http: HttpClient) {}
 
-  signIn(nickname: string): Observable<Player> {
+  signIn(nickname: string): Observable<SignInResponse> {
     const cleanNickname = nickname.trim();
 
     return this.http.post<SignInResponse>('/signin', { nickname: cleanNickname }).pipe(
-      map((response) => ({
-        playerId: response.playerId,
-        nickname: response.nickname ?? cleanNickname,
-      })),
-      tap((player) => this.persistPlayer(player)),
+      tap((response) => this.persistPlayer(response)),
     );
   }
 
@@ -29,8 +25,12 @@ export class AuthService {
     return this.playerSubject.value;
   }
 
+  getAccessToken(): string | null {
+    return this.currentPlayer?.token ?? null;
+  }
+
   isAuthenticated(): boolean {
-    return !!this.currentPlayer?.playerId;
+    return !!this.currentPlayer?.token;
   }
 
   signOut(): void {
@@ -59,7 +59,7 @@ export class AuthService {
 
     try {
       const parsed = JSON.parse(raw) as Player;
-      if (!parsed?.playerId || !parsed?.nickname) {
+      if (!parsed?.id || !parsed?.nickname || !parsed?.token) {
         return null;
       }
       return parsed;

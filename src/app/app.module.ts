@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +11,8 @@ import { LeaderboardPageComponent } from './pages/leaderboard-page/leaderboard-p
 import { SpeakerDetailPageComponent } from './pages/speaker-detail-page/speaker-detail-page.component';
 import { WordTokenComponent } from './components/word-token/word-token.component';
 import { ClaimWordModalComponent } from './components/claim-word-modal/claim-word-modal.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { ToastComponent } from './shared/toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -21,9 +23,10 @@ import { ClaimWordModalComponent } from './components/claim-word-modal/claim-wor
     SpeakerDetailPageComponent,
     WordTokenComponent,
     ClaimWordModalComponent,
+    ToastComponent,
   ],
   imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutingModule],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

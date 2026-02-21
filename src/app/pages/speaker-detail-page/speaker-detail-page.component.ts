@@ -2,7 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Speaker, eventSpeakers } from '../../data/speakers.data';
-import { Word } from '../../models/game.models';
+import { ClaimWordResponse, Word } from '../../models/game.models';
+import { ToastService } from '../../shared/toast/toast.service';
 
 @Component({
   selector: 'app-speaker-detail-page',
@@ -14,22 +15,23 @@ export class SpeakerDetailPageComponent implements OnInit, OnDestroy {
   speaker: Speaker | undefined;
   selectedWord: Word | null = null;
   foundWords = new Set<string>();
-  toastMessage = '';
   showHintModal = false;
   revealedHintWord: string | null = null;
 
   readonly hiddenWords: Word[] = [
-    { wordId: 's1', label: ':brief' },
+    { wordId: 's1', label: '!brief' },
     { wordId: 's2', label: '$depth' },
-    { wordId: 's3', label: '.focus' },
-    { wordId: 's4', label: ',insight' },
-    { wordId: 's5', label: ':speaker' },
+    { wordId: 's3', label: '%focus' },
+    { wordId: 's4', label: '!insight' },
+    { wordId: 's5', label: '%speaker' },
   ];
 
   private hintTimeout?: ReturnType<typeof setTimeout>;
-  private toastTimeout?: ReturnType<typeof setTimeout>;
 
-  constructor(private readonly route: ActivatedRoute) {}
+  constructor(
+    private readonly route: ActivatedRoute,
+    private readonly toastService: ToastService,
+  ) {}
 
   ngOnInit(): void {
     const speakerId = this.route.snapshot.paramMap.get('id');
@@ -40,9 +42,6 @@ export class SpeakerDetailPageComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.hintTimeout) {
       clearTimeout(this.hintTimeout);
-    }
-    if (this.toastTimeout) {
-      clearTimeout(this.toastTimeout);
     }
   }
 
@@ -60,19 +59,14 @@ export class SpeakerDetailPageComponent implements OnInit, OnDestroy {
     this.selectedWord = null;
   }
 
-  handleClaimed(message: string): void {
+  handleClaimed(response: ClaimWordResponse): void {
     if (this.selectedWord) {
       this.foundWords.add(this.selectedWord.label);
     }
     this.selectedWord = null;
-    this.toastMessage = `${message} (${this.foundWords.size}/${this.hiddenWords.length})`;
-
-    if (this.toastTimeout) {
-      clearTimeout(this.toastTimeout);
-    }
-    this.toastTimeout = setTimeout(() => {
-      this.toastMessage = '';
-    }, 1800);
+    this.toastService.success(
+      `${response.word} claimed (+${response.pointsAwarded}). Progress ${this.foundWords.size}/${this.hiddenWords.length}`,
+    );
   }
 
   isFound(word: string): boolean {

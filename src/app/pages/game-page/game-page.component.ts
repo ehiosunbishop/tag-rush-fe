@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Speaker, eventSpeakers } from '../../data/speakers.data';
-import { Word } from '../../models/game.models';
+import { ClaimWordResponse, Word } from '../../models/game.models';
+import { ToastService } from '../../shared/toast/toast.service';
 
 interface AgendaItem {
   time: string;
@@ -103,14 +104,14 @@ export class GamePageComponent implements OnInit, OnDestroy {
     { wordId: 'w18', label: '@onboarding' },
     { wordId: 'w19', label: '$boost' },
     { wordId: 'w20', label: '$margin' },
-    { wordId: 'w21', label: '.pulse' },
-    { wordId: 'w22', label: '.latency' },
-    { wordId: 'w23', label: ',delta' },
-    { wordId: 'w24', label: ',quiet' },
-    { wordId: 'w25', label: ':ledger' },
-    { wordId: 'w26', label: ':vault' },
-    { wordId: 'w27', label: ':route' },
-    { wordId: 'w28', label: ':signal' },
+    { wordId: 'w21', label: '!pulse' },
+    { wordId: 'w22', label: '!latency' },
+    { wordId: 'w23', label: '%delta' },
+    { wordId: 'w24', label: '%quiet' },
+    { wordId: 'w25', label: '!ledger' },
+    { wordId: 'w26', label: '%vault' },
+    { wordId: 'w27', label: '!route' },
+    { wordId: 'w28', label: '%signal' },
   ];
 
   readonly bonusIcons: BonusIcon[] = [
@@ -122,14 +123,14 @@ export class GamePageComponent implements OnInit, OnDestroy {
 
   selectedWord: Word | null = null;
   foundWords = new Set<string>();
-  toastMessage = '';
   showBonusModal = false;
   bonusWord: Word | null = null;
   bonusTitle = 'Hidden Cache';
   revealedBonusWord: string | null = null;
 
   private bonusTimeout?: ReturnType<typeof setTimeout>;
-  private toastTimeout?: ReturnType<typeof setTimeout>;
+
+  constructor(private readonly toastService: ToastService) {}
 
   ngOnInit(): void {
     this.scheduleNextBonusPopup();
@@ -138,9 +139,6 @@ export class GamePageComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.bonusTimeout) {
       clearTimeout(this.bonusTimeout);
-    }
-    if (this.toastTimeout) {
-      clearTimeout(this.toastTimeout);
     }
   }
 
@@ -159,21 +157,15 @@ export class GamePageComponent implements OnInit, OnDestroy {
     this.selectedWord = null;
   }
 
-  handleClaimed(message: string): void {
+  handleClaimed(response: ClaimWordResponse): void {
     if (this.selectedWord) {
       this.foundWords.add(this.selectedWord.label);
     }
 
     this.selectedWord = null;
-    this.toastMessage = `${message} (${this.foundWords.size}/${this.hiddenWords.length})`;
-
-    if (this.toastTimeout) {
-      clearTimeout(this.toastTimeout);
-    }
-
-    this.toastTimeout = setTimeout(() => {
-      this.toastMessage = '';
-    }, 1800);
+    this.toastService.success(
+      `${response.word} claimed (+${response.pointsAwarded}). Progress ${this.foundWords.size}/${this.hiddenWords.length}`,
+    );
 
     this.scheduleNextBonusPopup();
   }

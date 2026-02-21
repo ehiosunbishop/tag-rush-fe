@@ -22,11 +22,11 @@
               {{ speaker.topic }}
               <button
                 type="button"
-                (click)="openClaimModal(':speaker')"
-                [disabled]="isFound(':speaker')"
+                (click)="openClaimModal('%speaker')"
+                [disabled]="isFound('%speaker')"
                 class="secret-word"
               >
-                :speaker
+                %speaker
               </button>
             </p>
           </div>
@@ -35,20 +35,20 @@
             {{ speaker.summary }}
             <button
               type="button"
-              (click)="openClaimModal('.focus')"
-              [disabled]="isFound('.focus')"
+              (click)="openClaimModal('%focus')"
+              [disabled]="isFound('%focus')"
               class="secret-word"
             >
-              .focus
+              %focus
             </button>
             and
             <button
               type="button"
-              (click)="openClaimModal(':brief')"
-              [disabled]="isFound(':brief')"
+              (click)="openClaimModal('!brief')"
+              [disabled]="isFound('!brief')"
               class="secret-word"
             >
-              :brief
+              !brief
             </button>
             priorities.
           </p>
@@ -63,11 +63,11 @@
                 {{ point }}
                 <button
                   type="button"
-                  (click)="openClaimModal(',insight')"
-                  [disabled]="isFound(',insight')"
+                  (click)="openClaimModal('!insight')"
+                  [disabled]="isFound('!insight')"
                   class="secret-word"
                 >
-                  ,insight
+                  !insight
                 </button>
               </li>
             </ul>
@@ -155,15 +155,9 @@
 
 @if (selectedWord) {
   <app-claim-word-modal
-    [wordId]="selectedWord.wordId"
+    [word]="selectedWord.label"
     [label]="selectedWord.label"
     (close)="closeClaimModal()"
     (claimed)="handleClaimed($event)"
   ></app-claim-word-modal>
-}
-
-@if (toastMessage) {
-  <div class="fixed bottom-6 right-6 z-50 rounded-lg border border-white/30 bg-black/95 px-4 py-3 text-sm text-white shadow-xl">
-    {{ toastMessage }}
-  </div>
 }

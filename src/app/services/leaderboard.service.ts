@@ -1,23 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, map, of, shareReplay, switchMap, timer } from 'rxjs';
+import { Observable, catchError, of, shareReplay, switchMap, timer } from 'rxjs';
 
-import { LeaderboardEntry, LeaderboardResponse } from '../models/leaderboard.models';
+import { LeaderboardEntry } from '../models/leaderboard.models';
 
 @Injectable({ providedIn: 'root' })
 export class LeaderboardService {
   constructor(private readonly http: HttpClient) {}
 
   getLeaderboard(): Observable<LeaderboardEntry[]> {
-    return this.http.get<LeaderboardResponse | LeaderboardEntry[]>('/leaderboard').pipe(
-      map((response) => {
-        if (Array.isArray(response)) {
-          return response;
-        }
-
-        return response.leaderboard ?? response.players ?? [];
-      }),
-    );
+    return this.http.get<LeaderboardEntry[]>('/leaderboard');
   }
 
   pollLeaderboard(intervalMs = 3000): Observable<LeaderboardEntry[]> {

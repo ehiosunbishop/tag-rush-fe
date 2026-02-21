@@ -4,7 +4,14 @@ export interface Word {
 }
 
 export interface ClaimWordResponse {
-  success?: boolean;
-  message?: string;
-  score?: number;
+  status: 'claimed';
+  word: string;
+  symbol: string;
+  playerId: number;
+  pointsAwarded: number;
+  player: {
+    id: number;
+    nickname: string;
+    score: number;
+  };
 }

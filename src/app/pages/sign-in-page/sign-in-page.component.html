@@ -10,17 +10,11 @@
         id="nickname"
         name="nickname"
         [(ngModel)]="nickname"
-        maxlength="24"
+        maxlength="30"
         autocomplete="nickname"
         class="w-full rounded-xl border border-neutral-600 bg-neutral-900 px-4 py-3 text-white outline-none ring-white/40 transition placeholder:text-neutral-500 focus:border-white focus:ring-2"
         placeholder="SpeedTagger"
       />
-
-      @if (errorMessage) {
-        <p class="rounded-lg border border-white/30 bg-white/10 px-3 py-2 text-sm text-white">
-          {{ errorMessage }}
-        </p>
-      }
 
       <button
         type="submit"

@@ -40,11 +40,11 @@
         momentum, precise
         <button
           type="button"
-          (click)="openClaimModal(':route')"
-          [disabled]="isFound(':route')"
+          (click)="openClaimModal('!route')"
+          [disabled]="isFound('!route')"
           class="secret-word"
         >
-          :route
+          !route
         </button>
         planning, and clearer execution.
       </p>
@@ -94,20 +94,20 @@
           reliable through
           <button
             type="button"
-            (click)="openClaimModal('.pulse')"
-            [disabled]="isFound('.pulse')"
+            (click)="openClaimModal('!pulse')"
+            [disabled]="isFound('!pulse')"
             class="secret-word"
           >
-            .pulse
+            !pulse
           </button>
           checks and
           <button
             type="button"
-            (click)="openClaimModal(',quiet')"
-            [disabled]="isFound(',quiet')"
+            (click)="openClaimModal('%quiet')"
+            [disabled]="isFound('%quiet')"
             class="secret-word"
           >
-            ,quiet
+            %quiet
           </button>
           operational handoffs.
         </p>
@@ -148,20 +148,20 @@
         goals, low
         <button
           type="button"
-          (click)="openClaimModal('.latency')"
-          [disabled]="isFound('.latency')"
+          (click)="openClaimModal('!latency')"
+          [disabled]="isFound('!latency')"
           class="secret-word"
         >
-          .latency
+          !latency
         </button>
         loops, and stronger
         <button
           type="button"
-          (click)="openClaimModal(':signal')"
-          [disabled]="isFound(':signal')"
+          (click)="openClaimModal('%signal')"
+          [disabled]="isFound('%signal')"
           class="secret-word"
         >
-          :signal
+          %signal
         </button>
         discipline.
       </p>
@@ -252,11 +252,11 @@
           visibility with
           <button
             type="button"
-            (click)="openClaimModal(':ledger')"
-            [disabled]="isFound(':ledger')"
+            (click)="openClaimModal('!ledger')"
+            [disabled]="isFound('!ledger')"
             class="secret-word"
           >
-            :ledger
+            !ledger
           </button>
           context.
         </article>
@@ -285,11 +285,11 @@
           from leaders building and scaling payment products in the field with fewer
           <button
             type="button"
-            (click)="openClaimModal(',delta')"
-            [disabled]="isFound(',delta')"
+            (click)="openClaimModal('%delta')"
+            [disabled]="isFound('%delta')"
             class="secret-word"
           >
-            ,delta
+            %delta
           </button>
           surprises.
         </article>
@@ -327,11 +327,11 @@
             and scale with
             <button
               type="button"
-              (click)="openClaimModal(':vault')"
-              [disabled]="isFound(':vault')"
+              (click)="openClaimModal('%vault')"
+              [disabled]="isFound('%vault')"
               class="secret-word"
             >
-              :vault
+              %vault
             </button>
             readiness.
           </p>
@@ -409,11 +409,11 @@
             } @else if (item.question === 'How do I learn more before launch day?') {
               <button
                 type="button"
-                (click)="openClaimModal('.pulse')"
-                [disabled]="isFound('.pulse')"
+                (click)="openClaimModal('!pulse')"
+                [disabled]="isFound('!pulse')"
                 class="secret-word"
               >
-                .pulse
+                !pulse
               </button>
             }
           </p>
@@ -447,11 +447,11 @@
         cycles, plus cleaner
         <button
           type="button"
-          (click)="openClaimModal(':ledger')"
-          [disabled]="isFound(':ledger')"
+          (click)="openClaimModal('!ledger')"
+          [disabled]="isFound('!ledger')"
           class="secret-word"
         >
-          :ledger
+          !ledger
         </button>
         stories for operators.
       </p>
@@ -514,15 +514,9 @@
 
 @if (selectedWord) {
   <app-claim-word-modal
-    [wordId]="selectedWord.wordId"
+    [word]="selectedWord.label"
     [label]="selectedWord.label"
     (close)="closeClaimModal()"
     (claimed)="handleClaimed($event)"
   ></app-claim-word-modal>
-}
-
-@if (toastMessage) {
-  <div class="fixed bottom-6 right-6 z-50 rounded-lg border border-white/30 bg-black/95 px-4 py-3 text-sm text-white shadow-xl">
-    {{ toastMessage }}
-  </div>
 }

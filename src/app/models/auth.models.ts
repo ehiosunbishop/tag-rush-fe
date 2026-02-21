@@ -1,9 +1,12 @@
 export interface Player {
-  playerId: string;
+  id: number;
   nickname: string;
+  token: string;
+  score?: number;
 }
 
 export interface SignInResponse {
-  playerId: string;
+  id: number;
   nickname: string;
+  token: string;
 }

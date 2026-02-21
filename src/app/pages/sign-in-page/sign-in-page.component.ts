@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
+import { ToastService } from '../../shared/toast/toast.service';
 
 @Component({
   selector: 'app-sign-in-page',
@@ -12,11 +14,11 @@ import { AuthService } from '../../services/auth.service';
 export class SignInPageComponent implements OnInit {
   nickname = '';
   isSubmitting = false;
-  errorMessage = '';
 
   constructor(
     private readonly authService: AuthService,
     private readonly router: Router,
+    private readonly toastService: ToastService,
   ) {}
 
   ngOnInit(): void {
@@ -29,19 +31,27 @@ export class SignInPageComponent implements OnInit {
     const cleanNickname = this.nickname.trim();
 
     if (!cleanNickname) {
-      this.errorMessage = 'Nickname is required.';
+      this.toastService.error('Nickname is required.');
+      return;
+    }
+    if (cleanNickname.length < 2 || cleanNickname.length > 30) {
+      this.toastService.error('Nickname must be between 2 and 30 characters.');
       return;
     }
 
     this.isSubmitting = true;
-    this.errorMessage = '';
 
     this.authService.signIn(cleanNickname).subscribe({
-      next: () => {
+      next: (player) => {
+        this.toastService.success(`Welcome, ${player.nickname}!`);
         void this.router.navigate(['/game']);
       },
-      error: () => {
-        this.errorMessage = 'Sign in failed. Please try another nickname.';
+      error: (error: HttpErrorResponse) => {
+        if (error.status === 409 && error.error?.status === 'nickname_taken') {
+          this.toastService.error(error.error?.message ?? 'Nickname is already in use.');
+        } else {
+          this.toastService.error('Sign in failed. Please try again.');
+        }
         this.isSubmitting = false;
       },
       complete: () => {
