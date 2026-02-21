@@ -1,8 +1,10 @@
 import { Component, DestroyRef, effect, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 
+import { ClaimWordResponse, Word } from '../../models/game.models';
 import { LeaderboardEntry } from '../../models/leaderboard.models';
 import { LeaderboardService } from '../../services/leaderboard.service';
+import { ToastService } from '../../shared/toast/toast.service';
 
 @Component({
   selector: 'app-leaderboard-page',
@@ -19,8 +21,21 @@ export class LeaderboardPageComponent {
   readonly leaderboard;
   readonly isLoading = signal(true);
   readonly highlightedNicknames = signal<Set<string>>(new Set());
+  readonly hiddenWords: Word[] = [
+    { wordId: 'lb1', label: '#rankings' },
+    { wordId: 'lb2', label: '@streaks' },
+    { wordId: 'lb3', label: '$points' },
+    { wordId: 'lb4', label: '!climbers' },
+    { wordId: 'lb5', label: '%leaders' },
+  ];
 
-  constructor(private readonly leaderboardService: LeaderboardService) {
+  selectedWord: Word | null = null;
+  foundWords = new Set<string>();
+
+  constructor(
+    private readonly leaderboardService: LeaderboardService,
+    private readonly toastService: ToastService,
+  ) {
     this.leaderboard = toSignal(this.leaderboardService.pollLeaderboard(), {
       initialValue: [] as LeaderboardEntry[],
     });
@@ -72,5 +87,31 @@ export class LeaderboardPageComponent {
 
   isHighlighted(nickname: string): boolean {
     return this.highlightedNicknames().has(nickname);
+  }
+
+  handleWordClick(wordLabel: string): void {
+    const word = this.hiddenWords.find((item) => item.label === wordLabel);
+    if (!word || this.foundWords.has(word.label)) {
+      return;
+    }
+
+    this.selectedWord = word;
+  }
+
+  closeClaimModal(): void {
+    this.selectedWord = null;
+  }
+
+  handleClaimed(response: ClaimWordResponse): void {
+    if (this.selectedWord) {
+      this.foundWords.add(this.selectedWord.label);
+    }
+
+    this.selectedWord = null;
+    this.toastService.success(`${response.word} claimed (+${response.pointsAwarded}).`);
+  }
+
+  isFoundWord(word: string): boolean {
+    return this.foundWords.has(word);
   }
 }

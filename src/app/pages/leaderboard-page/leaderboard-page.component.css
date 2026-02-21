@@ -2,6 +2,26 @@
   display: block;
 }
 
+.secret-word {
+  margin: 0;
+  border: none;
+  background: transparent;
+  padding: 0;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  text-transform: inherit;
+  text-decoration: none;
+}
+
+.secret-word:disabled {
+  color: inherit;
+  cursor: default;
+  opacity: 1;
+}
+
 .leaderboard-row {
   animation: row-in 220ms ease both;
   transition: background-color 220ms ease;

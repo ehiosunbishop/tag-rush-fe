@@ -2,8 +2,23 @@
   <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
     <div>
       <p class="text-xs uppercase tracking-[0.18em] text-neutral-300">Leaderboard</p>
-      <h1 class="mt-1 text-3xl font-bold text-white">Top Claimers</h1>
-      <p class="mt-1 text-sm text-neutral-400">Live updates every 3 seconds</p>
+      <h1 class="mt-1 text-3xl font-bold text-white">
+        Top Claimers
+        <button type="button" (click)="handleWordClick('#rankings')" [disabled]="isFoundWord('#rankings')" class="secret-word">
+          #rankings
+        </button>
+      </h1>
+      <p class="mt-1 text-sm text-neutral-400">
+        Live updates every 3 seconds with
+        <button type="button" (click)="handleWordClick('@streaks')" [disabled]="isFoundWord('@streaks')" class="secret-word">
+          @streaks
+        </button>
+        and
+        <button type="button" (click)="handleWordClick('$points')" [disabled]="isFoundWord('$points')" class="secret-word">
+          $points
+        </button>
+        movement.
+      </p>
     </div>
 
     <a
@@ -40,8 +55,27 @@
       </div>
 
       @if (!leaderboard().length) {
-        <p class="mt-3 text-sm text-neutral-400">No claims yet. Start the game and claim first.</p>
+        <p class="mt-3 text-sm text-neutral-400">
+          No claims yet. Start the game and become one of the first
+          <button type="button" (click)="handleWordClick('!climbers')" [disabled]="isFoundWord('!climbers')" class="secret-word">
+            !climbers
+          </button>
+          on today’s
+          <button type="button" (click)="handleWordClick('%leaders')" [disabled]="isFoundWord('%leaders')" class="secret-word">
+            %leaders
+          </button>
+          board.
+        </p>
       }
     }
   </section>
 </div>
+
+@if (selectedWord) {
+  <app-claim-word-modal
+    [word]="selectedWord.label"
+    [label]="selectedWord.label"
+    (close)="closeClaimModal()"
+    (claimed)="handleClaimed($event)"
+  ></app-claim-word-modal>
+}
