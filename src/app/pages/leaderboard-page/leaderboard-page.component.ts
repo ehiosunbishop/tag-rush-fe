@@ -1,8 +1,9 @@
-import { Component, DestroyRef, effect, inject, signal } from '@angular/core';
+import { Component, DestroyRef, computed, effect, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 import { ClaimWordResponse, Word } from '../../models/game.models';
 import { LeaderboardEntry } from '../../models/leaderboard.models';
+import { AuthService } from '../../services/auth.service';
 import { LeaderboardService } from '../../services/leaderboard.service';
 import { ToastService } from '../../shared/toast/toast.service';
 
@@ -21,6 +22,8 @@ export class LeaderboardPageComponent {
   readonly leaderboard;
   readonly isLoading = signal(true);
   readonly highlightedNicknames = signal<Set<string>>(new Set());
+  readonly currentPlayer;
+  readonly canClaimWords;
   readonly hiddenWords: Word[] = [
     { wordId: 'lb1', label: '#rankings' },
     { wordId: 'lb2', label: '@streaks' },
@@ -33,12 +36,15 @@ export class LeaderboardPageComponent {
   foundWords = new Set<string>();
 
   constructor(
+    private readonly authService: AuthService,
     private readonly leaderboardService: LeaderboardService,
     private readonly toastService: ToastService,
   ) {
     this.leaderboard = toSignal(this.leaderboardService.pollLeaderboard(), {
       initialValue: [] as LeaderboardEntry[],
     });
+    this.currentPlayer = toSignal(this.authService.currentPlayer$, { initialValue: null });
+    this.canClaimWords = computed(() => !!this.currentPlayer()?.token);
 
     effect(() => {
       const entries = this.leaderboard();
@@ -90,6 +96,10 @@ export class LeaderboardPageComponent {
   }
 
   handleWordClick(wordLabel: string): void {
+    if (!this.canClaimWords()) {
+      return;
+    }
+
     const word = this.hiddenWords.find((item) => item.label === wordLabel);
     if (!word || this.foundWords.has(word.label)) {
       return;
@@ -113,5 +123,13 @@ export class LeaderboardPageComponent {
 
   isFoundWord(word: string): boolean {
     return this.foundWords.has(word);
+  }
+
+  displayWord(wordLabel: string): string {
+    if (this.canClaimWords() || wordLabel.length < 2) {
+      return wordLabel;
+    }
+
+    return wordLabel.slice(1);
   }
 }

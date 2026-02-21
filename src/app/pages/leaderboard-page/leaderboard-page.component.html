@@ -4,18 +4,18 @@
       <p class="text-xs uppercase tracking-[0.18em] text-neutral-300">Leaderboard</p>
       <h1 class="mt-1 text-3xl font-bold text-white">
         Top Claimers
-        <button type="button" (click)="handleWordClick('#rankings')" [disabled]="isFoundWord('#rankings')" class="secret-word">
-          #rankings
+        <button type="button" (click)="handleWordClick('#rankings')" [disabled]="!canClaimWords() || isFoundWord('#rankings')" class="secret-word">
+          {{ displayWord('#rankings') }}
         </button>
       </h1>
       <p class="mt-1 text-sm text-neutral-400">
-        Live updates every 3 seconds with
-        <button type="button" (click)="handleWordClick('@streaks')" [disabled]="isFoundWord('@streaks')" class="secret-word">
-          @streaks
+        Live updates
+        <button type="button" (click)="handleWordClick('@streaks')" [disabled]="!canClaimWords() || isFoundWord('@streaks')" class="secret-word">
+          {{ displayWord('@streaks') }}
         </button>
         and
-        <button type="button" (click)="handleWordClick('$points')" [disabled]="isFoundWord('$points')" class="secret-word">
-          $points
+        <button type="button" (click)="handleWordClick('$points')" [disabled]="!canClaimWords() || isFoundWord('$points')" class="secret-word">
+          {{ displayWord('$points') }}
         </button>
         movement.
       </p>
@@ -57,12 +57,12 @@
       @if (!leaderboard().length) {
         <p class="mt-3 text-sm text-neutral-400">
           No claims yet. Start the game and become one of the first
-          <button type="button" (click)="handleWordClick('!climbers')" [disabled]="isFoundWord('!climbers')" class="secret-word">
-            !climbers
+          <button type="button" (click)="handleWordClick('!climbers')" [disabled]="!canClaimWords() || isFoundWord('!climbers')" class="secret-word">
+            {{ displayWord('!climbers') }}
           </button>
           on today’s
-          <button type="button" (click)="handleWordClick('%leaders')" [disabled]="isFoundWord('%leaders')" class="secret-word">
-            %leaders
+          <button type="button" (click)="handleWordClick('%leaders')" [disabled]="!canClaimWords() || isFoundWord('%leaders')" class="secret-word">
+            {{ displayWord('%leaders') }}
           </button>
           board.
         </p>
