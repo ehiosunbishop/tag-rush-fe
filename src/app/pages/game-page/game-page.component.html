@@ -81,12 +81,13 @@
             View Leaderboard
           </a>
         } @else {
-          <a
-            routerLink="/join-game"
+          <button
+            type="button"
+            (click)="openJoinRulesModal()"
             class="rounded-full border border-white/40 px-6 py-3 text-sm font-semibold text-white transition hover:border-white"
           >
             Join Game
-          </a>
+          </button>
         }
       </div>
     </section>
@@ -497,6 +498,51 @@
     </section>
   </main>
 </div>
+
+@if (showJoinRulesModal) {
+  <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4">
+    <section class="w-full max-w-xl rounded-2xl border border-white/20 bg-neutral-950 p-6 md:p-7">
+      <div class="flex items-start justify-between gap-3">
+        <div>
+          <p class="text-xs uppercase tracking-[0.2em] text-neutral-400">Before You Join</p>
+          <h2 class="mt-1 text-2xl font-bold text-white">How Tag Rush Works</h2>
+        </div>
+        <button
+          type="button"
+          (click)="closeJoinRulesModal()"
+          class="rounded-lg border border-white/25 px-3 py-1 text-sm text-neutral-300 hover:border-white hover:text-white"
+        >
+          Close
+        </button>
+      </div>
+
+      <ol class="mt-4 list-decimal space-y-2 pl-5 text-sm text-neutral-300">
+        <li>Sign in with a unique nickname to get your access token.</li>
+        <li>Find hidden words across pages and click any word to open the claim modal.</li>
+        <li>Submit the exact word format, including its symbol, to claim points.</li>
+        <li>Claimed words can still be tapped again, but points are only awarded once globally.</li>
+        <li>Use the leaderboard to track top players in real time.</li>
+      </ol>
+
+      <div class="mt-6 flex flex-wrap justify-end gap-3">
+        <button
+          type="button"
+          (click)="closeJoinRulesModal()"
+          class="rounded-full border border-white/30 px-5 py-2.5 text-sm font-semibold text-white hover:border-white"
+        >
+          Maybe Later
+        </button>
+        <button
+          type="button"
+          (click)="continueToJoinGame()"
+          class="rounded-full bg-white px-5 py-2.5 text-sm font-bold text-black hover:bg-neutral-200"
+        >
+          Continue To Sign In
+        </button>
+      </div>
+    </section>
+  </div>
+}
 
 @if (activeInsight) {
   <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">

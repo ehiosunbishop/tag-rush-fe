@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { ClaimWordResponse, Word } from '../../models/game.models';
@@ -274,6 +275,7 @@ export class GamePageComponent implements OnInit, OnDestroy {
   selectedWord: Word | null = null;
   foundWords = new Set<string>();
   canClaimWords = false;
+  showJoinRulesModal = false;
   showBonusModal = false;
   bonusWord: Word | null = null;
   bonusTitle = 'Hidden Cache';
@@ -287,6 +289,7 @@ export class GamePageComponent implements OnInit, OnDestroy {
   constructor(
     private readonly authService: AuthService,
     private readonly toastService: ToastService,
+    private readonly router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -298,6 +301,7 @@ export class GamePageComponent implements OnInit, OnDestroy {
 
       this.canClaimWords = nextCanClaim;
       if (this.canClaimWords) {
+        this.showJoinRulesModal = false;
         this.scheduleNextBonusPopup();
         return;
       }
@@ -354,6 +358,23 @@ export class GamePageComponent implements OnInit, OnDestroy {
 
   closeClaimModal(): void {
     this.selectedWord = null;
+  }
+
+  openJoinRulesModal(): void {
+    if (this.canClaimWords) {
+      return;
+    }
+
+    this.showJoinRulesModal = true;
+  }
+
+  closeJoinRulesModal(): void {
+    this.showJoinRulesModal = false;
+  }
+
+  continueToJoinGame(): void {
+    this.showJoinRulesModal = false;
+    this.router.navigate(['/join-game']);
   }
 
   handleClaimed(response: ClaimWordResponse): void {
@@ -417,6 +438,7 @@ export class GamePageComponent implements OnInit, OnDestroy {
     }
 
     this.selectedWord = null;
+    this.showJoinRulesModal = false;
     this.showBonusModal = false;
     this.bonusWord = null;
     this.revealedBonusWord = null;
