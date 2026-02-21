@@ -6,7 +6,17 @@
     <section class="rounded-3xl border border-white/20 bg-gradient-to-br from-black via-neutral-900 to-black p-8 shadow-2xl md:p-12">
       <div class="flex items-center justify-between gap-3">
         <p class="text-xs uppercase tracking-[0.22em] text-neutral-300">Payinto Product Launch</p>
-        <img src="/logo-dark.webp" alt="Payinto logo" class="h-8 w-auto rounded-md border border-white/10 bg-black/70 px-2 py-1" />
+        <div class="relative">
+          <img src="/logo-dark.webp" alt="Payinto logo" class="relative z-10 h-8 w-auto rounded-md border border-white/10 bg-black/70 px-2 py-1" />
+          <button
+            type="button"
+            (click)="handleWordClick(':logoecho')"
+            [disabled]="!canClaimWords || isFound(':logoecho')"
+            class="secret-word secret-word-faint absolute -left-2 top-1/2 -translate-y-1/2"
+          >
+            {{ displayWord(':logoecho') }}
+          </button>
+        </div>
       </div>
       <h1 class="mt-3 max-w-5xl text-5xl font-black leading-[0.95] text-white md:text-8xl">
         Finance at Your
@@ -87,7 +97,16 @@
       </div>
       <div class="flex flex-wrap items-center justify-between gap-3 border-t border-white/10 px-5 py-4 md:px-6">
         <p class="text-sm text-neutral-300">
-          Official Payinto launch banner. For full product information and app access, visit payinto.co.
+          Official Payinto launch banner. For full product information and app access, visit payinto.co
+          <button
+            type="button"
+            (click)="handleWordClick(':shadowrail')"
+            [disabled]="!canClaimWords || isFound(':shadowrail')"
+            class="secret-word secret-word-faint"
+          >
+            {{ displayWord(':shadowrail') }}
+          </button>
+          .
         </p>
         <a
           href="https://payinto.co"
@@ -184,7 +203,17 @@
         </article>
       </div>
       <div class="mt-6">
-        <a routerLink="/product-details" class="text-sm font-semibold text-neutral-300 hover:text-white">View all product details</a>
+        <a routerLink="/product-details" class="text-sm font-semibold text-neutral-300 hover:text-white">
+          View all product details
+          <button
+            type="button"
+            (click)="handleWordClick(':deeptrace')"
+            [disabled]="!canClaimWords || isFound(':deeptrace')"
+            class="secret-word secret-word-faint"
+          >
+            {{ displayWord(':deeptrace') }}
+          </button>
+        </a>
       </div>
     </section>
 
@@ -228,7 +257,17 @@
 
     <section class="rounded-3xl border border-white/15 bg-neutral-950/90 p-8 md:p-10">
       <p class="text-xs uppercase tracking-[0.2em] text-neutral-400">Operator Trail</p>
-      <h2 class="mt-2 text-3xl font-bold text-white">Hidden Signals In Real Workflows</h2>
+      <h2 class="mt-2 text-3xl font-bold text-white">
+        Hidden Signals In Real Workflows
+        <button
+          type="button"
+          (click)="handleWordClick(':lowpulse')"
+          [disabled]="!canClaimWords || isFound(':lowpulse')"
+          class="secret-word secret-word-faint"
+        >
+          {{ displayWord(':lowpulse') }}
+        </button>
+      </h2>
       <div class="mt-6 space-y-4 text-sm text-neutral-300">
         <p>
           Teams aiming for
@@ -426,6 +465,14 @@
           class="secret-word"
         >
           {{ displayWord('%ndic') }}
+        </button>
+        <button
+          type="button"
+          (click)="handleWordClick(':silentnode')"
+          [disabled]="!canClaimWords || isFound(':silentnode')"
+          class="secret-word secret-word-faint"
+        >
+          {{ displayWord(':silentnode') }}
         </button>
         .
       </p>

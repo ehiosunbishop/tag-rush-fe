@@ -21,3 +21,13 @@
   cursor: default;
   opacity: 1;
 }
+
+.secret-word-faint {
+  opacity: 0.18;
+  transition: opacity 180ms ease;
+}
+
+.secret-word-faint:hover,
+.secret-word-faint:focus-visible {
+  opacity: 0.55;
+}

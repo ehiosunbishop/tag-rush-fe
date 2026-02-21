@@ -257,6 +257,11 @@ export class GamePageComponent implements OnInit, OnDestroy {
     { wordId: 'w93', label: '@thoughtleadership' },
     { wordId: 'w94', label: '$brandstory' },
     { wordId: 'w95', label: '%growthforum' },
+    { wordId: 'w96', label: ':logoecho' },
+    { wordId: 'w97', label: ':shadowrail' },
+    { wordId: 'w98', label: ':deeptrace' },
+    { wordId: 'w99', label: ':lowpulse' },
+    { wordId: 'w100', label: ':silentnode' },
   ];
 
   readonly bonusIcons = [
