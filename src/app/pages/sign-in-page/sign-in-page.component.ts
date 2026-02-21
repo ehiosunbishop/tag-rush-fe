@@ -23,7 +23,7 @@ export class SignInPageComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.authService.isAuthenticated()) {
-      void this.router.navigate(['/game']);
+      void this.router.navigate(['/']);
     }
   }
 
@@ -44,7 +44,7 @@ export class SignInPageComponent implements OnInit {
     this.authService.signIn(cleanNickname).subscribe({
       next: (player) => {
         this.toastService.success(`Welcome, ${player.nickname}!`);
-        void this.router.navigate(['/game']);
+        void this.router.navigate(['/']);
       },
       error: (error: HttpErrorResponse) => {
         if (error.status === 409 && error.error?.status === 'nickname_taken') {

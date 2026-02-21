@@ -13,38 +13,38 @@
         playbooks for building cleaner payment workflows
         <button
           type="button"
-          (click)="openClaimModal('#launch')"
-          [disabled]="isFound('#launch')"
+          (click)="handleWordClick('#launch')"
+          [disabled]="!canClaimWords || isFound('#launch')"
           class="secret-word"
         >
-          #launch
+          {{ displayWord('#launch') }}
         </button>
         for modern
         <button
           type="button"
-          (click)="openClaimModal('#fintech')"
-          [disabled]="isFound('#fintech')"
+          (click)="handleWordClick('#fintech')"
+          [disabled]="!canClaimWords || isFound('#fintech')"
           class="secret-word"
         >
-          #fintech
+          {{ displayWord('#fintech') }}
         </button>
         teams with
         <button
           type="button"
-          (click)="openClaimModal('$boost')"
-          [disabled]="isFound('$boost')"
+          (click)="handleWordClick('$boost')"
+          [disabled]="!canClaimWords || isFound('$boost')"
           class="secret-word"
         >
-          $boost
+          {{ displayWord('$boost') }}
         </button>
         momentum, precise
         <button
           type="button"
-          (click)="openClaimModal('!route')"
-          [disabled]="isFound('!route')"
+          (click)="handleWordClick('!route')"
+          [disabled]="!canClaimWords || isFound('!route')"
           class="secret-word"
         >
-          !route
+          {{ displayWord('!route') }}
         </button>
         planning, and clearer execution.
       </p>
@@ -64,6 +64,21 @@
         >
           View Event Agenda
         </a>
+        @if (!canClaimWords) {
+          <a
+            routerLink="/join-game"
+            class="rounded-full border border-emerald-300/50 bg-emerald-500/10 px-6 py-3 text-sm font-semibold text-emerald-200 transition hover:border-emerald-200 hover:text-emerald-100"
+          >
+            Join Game To Claim Words
+          </a>
+        } @else {
+          <a
+            routerLink="/leaderboard"
+            class="rounded-full border border-white/40 px-6 py-3 text-sm font-semibold text-white transition hover:border-white"
+          >
+            View Leaderboard
+          </a>
+        }
       </div>
     </section>
 
@@ -76,38 +91,38 @@
           around digital payments without bloated workflows
           <button
             type="button"
-            (click)="openClaimModal('@payinto')"
-            [disabled]="isFound('@payinto')"
+            (click)="handleWordClick('@payinto')"
+            [disabled]="!canClaimWords || isFound('@payinto')"
             class="secret-word"
           >
-            @payinto
+            {{ displayWord('@payinto') }}
           </button>
           while keeping
           <button
             type="button"
-            (click)="openClaimModal('@payments')"
-            [disabled]="isFound('@payments')"
+            (click)="handleWordClick('@payments')"
+            [disabled]="!canClaimWords || isFound('@payments')"
             class="secret-word"
           >
-            @payments
+            {{ displayWord('@payments') }}
           </button>
           reliable through
           <button
             type="button"
-            (click)="openClaimModal('!pulse')"
-            [disabled]="isFound('!pulse')"
+            (click)="handleWordClick('!pulse')"
+            [disabled]="!canClaimWords || isFound('!pulse')"
             class="secret-word"
           >
-            !pulse
+            {{ displayWord('!pulse') }}
           </button>
           checks and
           <button
             type="button"
-            (click)="openClaimModal('%quiet')"
-            [disabled]="isFound('%quiet')"
+            (click)="handleWordClick('%quiet')"
+            [disabled]="!canClaimWords || isFound('%quiet')"
             class="secret-word"
           >
-            %quiet
+            {{ displayWord('%quiet') }}
           </button>
           operational handoffs.
         </p>
@@ -130,38 +145,38 @@
         The agenda is intentionally practical with short, high-value sessions
         <button
           type="button"
-          (click)="openClaimModal('#agenda')"
-          [disabled]="isFound('#agenda')"
+          (click)="handleWordClick('#agenda')"
+          [disabled]="!canClaimWords || isFound('#agenda')"
           class="secret-word"
         >
-          #agenda
+          {{ displayWord('#agenda') }}
         </button>
         that map to
         <button
           type="button"
-          (click)="openClaimModal('@velocity')"
-          [disabled]="isFound('@velocity')"
+          (click)="handleWordClick('@velocity')"
+          [disabled]="!canClaimWords || isFound('@velocity')"
           class="secret-word"
         >
-          @velocity
+          {{ displayWord('@velocity') }}
         </button>
         goals, low
         <button
           type="button"
-          (click)="openClaimModal('!latency')"
-          [disabled]="isFound('!latency')"
+          (click)="handleWordClick('!latency')"
+          [disabled]="!canClaimWords || isFound('!latency')"
           class="secret-word"
         >
-          !latency
+          {{ displayWord('!latency') }}
         </button>
         loops, and stronger
         <button
           type="button"
-          (click)="openClaimModal('%signal')"
-          [disabled]="isFound('%signal')"
+          (click)="handleWordClick('%signal')"
+          [disabled]="!canClaimWords || isFound('%signal')"
           class="secret-word"
         >
-          %signal
+          {{ displayWord('%signal') }}
         </button>
         discipline.
       </p>
@@ -188,29 +203,29 @@
           points
           <button
             type="button"
-            (click)="openClaimModal('@speaker')"
-            [disabled]="isFound('@speaker')"
+            (click)="handleWordClick('@speaker')"
+            [disabled]="!canClaimWords || isFound('@speaker')"
             class="secret-word"
           >
-            @speaker
+            {{ displayWord('@speaker') }}
           </button>
           with operator-ready
           <button
             type="button"
-            (click)="openClaimModal('#merchant')"
-            [disabled]="isFound('#merchant')"
+            (click)="handleWordClick('#merchant')"
+            [disabled]="!canClaimWords || isFound('#merchant')"
             class="secret-word"
           >
-            #merchant
+            {{ displayWord('#merchant') }}
           </button>
           context and tighter
           <button
             type="button"
-            (click)="openClaimModal('$margin')"
-            [disabled]="isFound('$margin')"
+            (click)="handleWordClick('$margin')"
+            [disabled]="!canClaimWords || isFound('$margin')"
             class="secret-word"
           >
-            $margin
+            {{ displayWord('$margin') }}
           </button>
           outcomes.
         </p>
@@ -243,20 +258,20 @@
           A concrete view of how Payinto fits into real business payment operations and
           <button
             type="button"
-            (click)="openClaimModal('@settlement')"
-            [disabled]="isFound('@settlement')"
+            (click)="handleWordClick('@settlement')"
+            [disabled]="!canClaimWords || isFound('@settlement')"
             class="secret-word"
           >
-            @settlement
+            {{ displayWord('@settlement') }}
           </button>
           visibility with
           <button
             type="button"
-            (click)="openClaimModal('!ledger')"
-            [disabled]="isFound('!ledger')"
+            (click)="handleWordClick('!ledger')"
+            [disabled]="!canClaimWords || isFound('!ledger')"
             class="secret-word"
           >
-            !ledger
+            {{ displayWord('!ledger') }}
           </button>
           context.
         </article>
@@ -264,11 +279,11 @@
           A framework for
           <button
             type="button"
-            (click)="openClaimModal('@onboarding')"
-            [disabled]="isFound('@onboarding')"
+            (click)="handleWordClick('@onboarding')"
+            [disabled]="!canClaimWords || isFound('@onboarding')"
             class="secret-word"
           >
-            @onboarding
+            {{ displayWord('@onboarding') }}
           </button>
           , payment monitoring, and post-launch reliability planning.
         </article>
@@ -276,20 +291,20 @@
           Direct
           <button
             type="button"
-            (click)="openClaimModal('@insights')"
-            [disabled]="isFound('@insights')"
+            (click)="handleWordClick('@insights')"
+            [disabled]="!canClaimWords || isFound('@insights')"
             class="secret-word"
           >
-            @insights
+            {{ displayWord('@insights') }}
           </button>
           from leaders building and scaling payment products in the field with fewer
           <button
             type="button"
-            (click)="openClaimModal('%delta')"
-            [disabled]="isFound('%delta')"
+            (click)="handleWordClick('%delta')"
+            [disabled]="!canClaimWords || isFound('%delta')"
             class="secret-word"
           >
-            %delta
+            {{ displayWord('%delta') }}
           </button>
           surprises.
         </article>
@@ -307,31 +322,31 @@
             <span class="font-semibold text-white">Duration:</span> Half-day program +
             <button
               type="button"
-              (click)="openClaimModal('#network')"
-              [disabled]="isFound('#network')"
+              (click)="handleWordClick('#network')"
+              [disabled]="!canClaimWords || isFound('#network')"
               class="secret-word"
             >
-              #network
+              {{ displayWord('#network') }}
             </button>
           </p>
           <p>
             <span class="font-semibold text-white">Host:</span> Payinto product and leadership team focused on
             <button
               type="button"
-              (click)="openClaimModal('#compliance')"
-              [disabled]="isFound('#compliance')"
+              (click)="handleWordClick('#compliance')"
+              [disabled]="!canClaimWords || isFound('#compliance')"
               class="secret-word"
             >
-              #compliance
+              {{ displayWord('#compliance') }}
             </button>
             and scale with
             <button
               type="button"
-              (click)="openClaimModal('%vault')"
-              [disabled]="isFound('%vault')"
+              (click)="handleWordClick('%vault')"
+              [disabled]="!canClaimWords || isFound('%vault')"
               class="secret-word"
             >
-              %vault
+              {{ displayWord('%vault') }}
             </button>
             readiness.
           </p>
@@ -347,11 +362,11 @@
             2. Choose sessions you care about most and prioritize
             <button
               type="button"
-              (click)="openClaimModal('#reconcile')"
-              [disabled]="isFound('#reconcile')"
+              (click)="handleWordClick('#reconcile')"
+              [disabled]="!canClaimWords || isFound('#reconcile')"
               class="secret-word"
             >
-              #reconcile
+              {{ displayWord('#reconcile') }}
             </button>
             workflows.
           </li>
@@ -359,20 +374,20 @@
             3. Attend live and ask practical implementation questions
             <button
               type="button"
-              (click)="openClaimModal('@eventday')"
-              [disabled]="isFound('@eventday')"
+              (click)="handleWordClick('@eventday')"
+              [disabled]="!canClaimWords || isFound('@eventday')"
               class="secret-word"
             >
-              @eventday
+              {{ displayWord('@eventday') }}
             </button>
             with
             <button
               type="button"
-              (click)="openClaimModal('#dashboard')"
-              [disabled]="isFound('#dashboard')"
+              (click)="handleWordClick('#dashboard')"
+              [disabled]="!canClaimWords || isFound('#dashboard')"
               class="secret-word"
             >
-              #dashboard
+              {{ displayWord('#dashboard') }}
             </button>
             examples.
           </li>
@@ -391,29 +406,29 @@
             @if (item.question === 'Can I access materials after the event?') {
               <button
                 type="button"
-                (click)="openClaimModal('#questions')"
-                [disabled]="isFound('#questions')"
+                (click)="handleWordClick('#questions')"
+                [disabled]="!canClaimWords || isFound('#questions')"
                 class="secret-word"
               >
-                #questions
+                {{ displayWord('#questions') }}
               </button>
             } @else if (item.question === 'Who should attend?') {
               <button
                 type="button"
-                (click)="openClaimModal('#merchant')"
-                [disabled]="isFound('#merchant')"
+                (click)="handleWordClick('#merchant')"
+                [disabled]="!canClaimWords || isFound('#merchant')"
                 class="secret-word"
               >
-                #merchant
+                {{ displayWord('#merchant') }}
               </button>
             } @else if (item.question === 'How do I learn more before launch day?') {
               <button
                 type="button"
-                (click)="openClaimModal('!pulse')"
-                [disabled]="isFound('!pulse')"
+                (click)="handleWordClick('!pulse')"
+                [disabled]="!canClaimWords || isFound('!pulse')"
                 class="secret-word"
               >
-                !pulse
+                {{ displayWord('!pulse') }}
               </button>
             }
           </p>
@@ -429,29 +444,29 @@
         payment stack
         <button
           type="button"
-          (click)="openClaimModal('@checkout')"
-          [disabled]="isFound('@checkout')"
+          (click)="handleWordClick('@checkout')"
+          [disabled]="!canClaimWords || isFound('@checkout')"
           class="secret-word"
         >
-          @checkout
+          {{ displayWord('@checkout') }}
         </button>
         and faster
         <button
           type="button"
-          (click)="openClaimModal('@settlement')"
-          [disabled]="isFound('@settlement')"
+          (click)="handleWordClick('@settlement')"
+          [disabled]="!canClaimWords || isFound('@settlement')"
           class="secret-word"
         >
-          @settlement
+          {{ displayWord('@settlement') }}
         </button>
         cycles, plus cleaner
         <button
           type="button"
-          (click)="openClaimModal('!ledger')"
-          [disabled]="isFound('!ledger')"
+          (click)="handleWordClick('!ledger')"
+          [disabled]="!canClaimWords || isFound('!ledger')"
           class="secret-word"
         >
-          !ledger
+          {{ displayWord('!ledger') }}
         </button>
         stories for operators.
       </p>

@@ -3,13 +3,16 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/c
 import { Observable } from 'rxjs';
 
 import { AuthService } from '../services/auth.service';
+import { apiUrl } from '../shared/api/api-url';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
+  private readonly signInUrl = apiUrl('/signin');
+
   constructor(private readonly authService: AuthService) {}
 
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    if (req.url.endsWith('/signin')) {
+    if (this.isSignInRequest(req.url)) {
       return next.handle(req);
     }
 
@@ -25,5 +28,10 @@ export class AuthInterceptor implements HttpInterceptor {
         },
       }),
     );
+  }
+
+  private isSignInRequest(url: string): boolean {
+    const normalized = url.split('?')[0];
+    return normalized === this.signInUrl || normalized.endsWith('/signin');
   }
 }

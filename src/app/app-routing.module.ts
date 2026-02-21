@@ -8,12 +8,13 @@ import { SpeakerDetailPageComponent } from './pages/speaker-detail-page/speaker-
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'game' },
-  { path: 'signin', component: SignInPageComponent },
-  { path: 'game', component: GamePageComponent, canActivate: [AuthGuard] },
+  { path: '', component: GamePageComponent },
+  { path: 'game', component: GamePageComponent },
+  { path: 'join-game', component: SignInPageComponent },
+  { path: 'signin', pathMatch: 'full', redirectTo: 'join-game' },
   { path: 'speakers/:id', component: SpeakerDetailPageComponent, canActivate: [AuthGuard] },
   { path: 'leaderboard', component: LeaderboardPageComponent, canActivate: [AuthGuard] },
-  { path: '**', redirectTo: 'game' },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({

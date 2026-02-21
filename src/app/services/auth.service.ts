@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 import { Player, SignInResponse } from '../models/auth.models';
+import { apiUrl } from '../shared/api/api-url';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -16,7 +17,7 @@ export class AuthService {
   signIn(nickname: string): Observable<SignInResponse> {
     const cleanNickname = nickname.trim();
 
-    return this.http.post<SignInResponse>('/signin', { nickname: cleanNickname }).pipe(
+    return this.http.post<SignInResponse>(apiUrl('/signin'), { nickname: cleanNickname }).pipe(
       tap((response) => this.persistPlayer(response)),
     );
   }

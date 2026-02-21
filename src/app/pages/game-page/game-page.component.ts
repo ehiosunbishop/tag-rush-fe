@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Speaker, eventSpeakers } from '../../data/speakers.data';
 import { ClaimWordResponse, Word } from '../../models/game.models';
+import { AuthService } from '../../services/auth.service';
 import { ToastService } from '../../shared/toast/toast.service';
 
 interface AgendaItem {
@@ -123,26 +125,65 @@ export class GamePageComponent implements OnInit, OnDestroy {
 
   selectedWord: Word | null = null;
   foundWords = new Set<string>();
+  canClaimWords = false;
   showBonusModal = false;
   bonusWord: Word | null = null;
   bonusTitle = 'Hidden Cache';
   revealedBonusWord: string | null = null;
 
+  private authSubscription?: Subscription;
   private bonusTimeout?: ReturnType<typeof setTimeout>;
 
-  constructor(private readonly toastService: ToastService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly toastService: ToastService,
+  ) {}
 
   ngOnInit(): void {
-    this.scheduleNextBonusPopup();
+    this.authSubscription = this.authService.currentPlayer$.subscribe((player) => {
+      const nextCanClaim = !!player?.token;
+      if (nextCanClaim === this.canClaimWords) {
+        return;
+      }
+
+      this.canClaimWords = nextCanClaim;
+      if (this.canClaimWords) {
+        this.scheduleNextBonusPopup();
+        return;
+      }
+
+      this.clearClaimingState();
+    });
   }
 
   ngOnDestroy(): void {
+    this.authSubscription?.unsubscribe();
     if (this.bonusTimeout) {
       clearTimeout(this.bonusTimeout);
     }
   }
 
+  displayWord(wordLabel: string): string {
+    if (this.canClaimWords || wordLabel.length < 2) {
+      return wordLabel;
+    }
+
+    return wordLabel.slice(1);
+  }
+
+  handleWordClick(wordLabel: string): void {
+    if (!this.canClaimWords) {
+      return;
+    }
+
+    this.openClaimModal(wordLabel);
+  }
+
   openClaimModal(wordLabel: string): void {
+    if (!this.canClaimWords) {
+      return;
+    }
+
     const word = this.hiddenWords.find((item) => item.label === wordLabel);
     if (!word || this.foundWords.has(word.label)) {
       return;
@@ -182,7 +223,7 @@ export class GamePageComponent implements OnInit, OnDestroy {
   }
 
   claimBonusWord(): void {
-    if (!this.revealedBonusWord) {
+    if (!this.canClaimWords || !this.revealedBonusWord) {
       return;
     }
     this.openClaimModal(this.revealedBonusWord);
@@ -195,6 +236,10 @@ export class GamePageComponent implements OnInit, OnDestroy {
   }
 
   private scheduleNextBonusPopup(): void {
+    if (!this.canClaimWords) {
+      return;
+    }
+
     if (this.bonusTimeout) {
       clearTimeout(this.bonusTimeout);
     }
@@ -212,5 +257,16 @@ export class GamePageComponent implements OnInit, OnDestroy {
       this.revealedBonusWord = null;
       this.showBonusModal = true;
     }, delayMs);
+  }
+
+  private clearClaimingState(): void {
+    if (this.bonusTimeout) {
+      clearTimeout(this.bonusTimeout);
+    }
+
+    this.selectedWord = null;
+    this.showBonusModal = false;
+    this.bonusWord = null;
+    this.revealedBonusWord = null;
   }
 }
