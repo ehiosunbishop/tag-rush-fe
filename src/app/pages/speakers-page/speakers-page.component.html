@@ -1,0 +1,90 @@
+<div class="mx-auto max-w-6xl space-y-10 px-4 py-10 md:px-8 md:py-14">
+  <section class="rounded-3xl border border-white/20 bg-gradient-to-br from-black via-neutral-900 to-black p-8 md:p-10">
+    <p class="text-xs uppercase tracking-[0.2em] text-neutral-400">Speakers</p>
+    <h1 class="mt-2 text-4xl font-black text-white">Launch Speaker Lineup</h1>
+    <p class="mt-3 max-w-4xl text-sm text-neutral-300">
+      Meet the people shaping conversations around finance, business structure, visibility, and execution.
+      Along the way, keep an eye for
+      <button type="button" (click)="handleWordClick('@speakerlane')" [disabled]="!canClaimWords || isFound('@speakerlane')" class="secret-word">
+        {{ displayWord('@speakerlane') }}
+      </button>
+      cues and
+      <button type="button" (click)="handleWordClick('#stageinsights')" [disabled]="!canClaimWords || isFound('#stageinsights')" class="secret-word">
+        {{ displayWord('#stageinsights') }}
+      </button>
+      moments.
+    </p>
+
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a routerLink="/" class="rounded-full border border-white/35 px-5 py-2.5 text-sm font-semibold text-white hover:border-white">Back To Landing</a>
+      <a href="https://payinto.co" target="_blank" rel="noopener noreferrer" class="rounded-full bg-white px-5 py-2.5 text-sm font-bold text-black hover:bg-neutral-200">
+        More On payinto.co
+      </a>
+    </div>
+  </section>
+
+  <section class="grid gap-5 md:grid-cols-2">
+    <article *ngFor="let showcase of speakerShowcases" class="overflow-hidden rounded-2xl border border-white/15 bg-neutral-950">
+      @if (showcase.isInteractive) {
+        <button type="button" (click)="openShowcase(showcase)" class="block w-full text-left">
+          <img [src]="showcase.image" [alt]="showcase.title" class="h-64 w-full object-cover transition hover:scale-[1.01]" />
+        </button>
+      } @else {
+        <img [src]="showcase.image" [alt]="showcase.title" class="h-64 w-full object-cover" />
+      }
+
+      <div class="p-5">
+        <h2 class="text-xl font-bold text-white">{{ showcase.title }}</h2>
+        <p class="mt-2 text-sm text-neutral-300">
+          {{ showcase.summary }}
+          The session threads in
+          <button type="button" (click)="handleWordClick(showcase.word)" [disabled]="!canClaimWords || isFound(showcase.word)" class="secret-word">
+            {{ displayWord(showcase.word) }}
+          </button>
+          insights for operators.
+        </p>
+
+        @if (showcase.isInteractive) {
+          <p class="mt-3 text-xs uppercase tracking-[0.14em] text-neutral-400">Tap image for detailed notes</p>
+        } @else {
+          <p class="mt-3 text-xs uppercase tracking-[0.14em] text-neutral-500">Image preview only</p>
+        }
+      </div>
+    </article>
+  </section>
+</div>
+
+@if (activeShowcase) {
+  <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
+    <section class="w-full max-w-3xl overflow-hidden rounded-2xl border border-white/20 bg-neutral-950">
+      <img [src]="activeShowcase.image" [alt]="activeShowcase.title" class="h-72 w-full object-cover" />
+      <div class="p-6">
+        <div class="flex items-start justify-between gap-3">
+          <h2 class="text-2xl font-bold text-white">{{ activeShowcase.title }}</h2>
+          <button type="button" (click)="closeShowcase()" class="rounded-lg border border-white/25 px-3 py-1 text-sm text-neutral-300 hover:border-white hover:text-white">
+            Close
+          </button>
+        </div>
+        <p class="mt-3 text-sm text-neutral-300">{{ activeShowcase.summary }}</p>
+
+        <div class="mt-4 space-y-3">
+          <div *ngFor="let note of activeShowcase.notes" class="rounded-xl border border-white/15 bg-black p-3 text-sm text-neutral-200">
+            {{ note.label }}
+            <button type="button" (click)="handleWordClick(note.word)" [disabled]="!canClaimWords || isFound(note.word)" class="secret-word font-semibold">
+              {{ displayWord(note.word) }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+}
+
+@if (selectedWord) {
+  <app-claim-word-modal
+    [word]="selectedWord.label"
+    [label]="selectedWord.label"
+    (close)="closeClaimModal()"
+    (claimed)="handleClaimed($event)"
+  ></app-claim-word-modal>
+}

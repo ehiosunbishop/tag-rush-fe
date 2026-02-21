@@ -2,51 +2,53 @@
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.16),_transparent_52%)]"></div>
   <div class="absolute inset-0 opacity-[0.08] bg-[linear-gradient(transparent_0,transparent_24px,white_25px)] bg-[size:100%_25px]"></div>
 
-  <main class="relative mx-auto max-w-6xl space-y-14 px-4 py-10 md:px-8 md:py-14">
-    <section class="relative rounded-3xl border border-white/20 bg-gradient-to-br from-black via-neutral-900 to-black p-8 shadow-2xl md:p-12">
-      <p class="text-xs uppercase tracking-[0.22em] text-neutral-300">Payinto Launch Event</p>
-      <h1 class="mt-3 max-w-3xl text-4xl font-black leading-tight text-white md:text-6xl">
-        The Payment Operations Event for Teams That Ship Fast
+  <main class="relative mx-auto max-w-6xl space-y-12 px-4 py-10 md:px-8 md:py-14">
+    <section class="rounded-3xl border border-white/20 bg-gradient-to-br from-black via-neutral-900 to-black p-8 shadow-2xl md:p-12">
+      <p class="text-xs uppercase tracking-[0.22em] text-neutral-300">Payinto Product Launch</p>
+      <h1 class="mt-3 max-w-5xl text-5xl font-black leading-[0.95] text-white md:text-8xl">
+        Finance at Your
+        <span class="block text-neutral-500">
+          Fingertips
+          <button
+            type="button"
+            (click)="handleWordClick('#payments')"
+            [disabled]="!canClaimWords || isFound('#payments')"
+            class="secret-word"
+          >
+            {{ displayWord('#payments') }}
+          </button>
+        </span>
       </h1>
-      <p class="mt-4 max-w-3xl text-sm text-neutral-300 md:text-base">
-        This launch experience introduces the Payinto platform, the people behind it, and practical
-        playbooks for building cleaner payment workflows
+
+      <p class="mt-8 max-w-4xl text-2xl leading-relaxed text-neutral-400">
+        Experience the power of Payinto on iOS and Android. Real-time
         <button
           type="button"
-          (click)="handleWordClick('#launch')"
-          [disabled]="!canClaimWords || isFound('#launch')"
+          (click)="handleWordClick('#realtime')"
+          [disabled]="!canClaimWords || isFound('#realtime')"
           class="secret-word"
         >
-          {{ displayWord('#launch') }}
+          {{ displayWord('#realtime') }}
         </button>
-        for modern
+        tracking, instant
         <button
           type="button"
-          (click)="handleWordClick('#fintech')"
-          [disabled]="!canClaimWords || isFound('#fintech')"
+          (click)="handleWordClick('#transfers')"
+          [disabled]="!canClaimWords || isFound('#transfers')"
           class="secret-word"
         >
-          {{ displayWord('#fintech') }}
+          {{ displayWord('#transfers') }}
         </button>
-        teams with
+        , and bank-grade
         <button
           type="button"
-          (click)="handleWordClick('$boost')"
-          [disabled]="!canClaimWords || isFound('$boost')"
+          (click)="handleWordClick('$controls')"
+          [disabled]="!canClaimWords || isFound('$controls')"
           class="secret-word"
         >
-          {{ displayWord('$boost') }}
+          {{ displayWord('$controls') }}
         </button>
-        momentum, precise
-        <button
-          type="button"
-          (click)="handleWordClick('!route')"
-          [disabled]="!canClaimWords || isFound('!route')"
-          class="secret-word"
-        >
-          {{ displayWord('!route') }}
-        </button>
-        planning, and clearer execution.
+        security in your pocket.
       </p>
 
       <div class="mt-7 flex flex-wrap gap-3">
@@ -58,429 +60,428 @@
         >
           Visit payinto.co
         </a>
-        <a
-          href="#agenda"
-          class="rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:border-white"
-        >
-          View Event Agenda
-        </a>
-        @if (!canClaimWords) {
-          <a
-            routerLink="/join-game"
-            class="rounded-full border border-emerald-300/50 bg-emerald-500/10 px-6 py-3 text-sm font-semibold text-emerald-200 transition hover:border-emerald-200 hover:text-emerald-100"
-          >
-            Join Game To Claim Words
-          </a>
-        } @else {
+        @if (canClaimWords) {
           <a
             routerLink="/leaderboard"
             class="rounded-full border border-white/40 px-6 py-3 text-sm font-semibold text-white transition hover:border-white"
           >
             View Leaderboard
           </a>
+        } @else {
+          <a
+            routerLink="/join-game"
+            class="rounded-full border border-white/40 px-6 py-3 text-sm font-semibold text-white transition hover:border-white"
+          >
+            Join Game
+          </a>
         }
       </div>
     </section>
 
-    <section class="relative grid gap-6 rounded-3xl border border-white/15 bg-neutral-950/90 p-8 md:grid-cols-2 md:p-10">
-      <div>
-        <p class="text-xs uppercase tracking-[0.2em] text-neutral-400">About The App</p>
-        <h2 class="mt-2 text-3xl font-bold text-white">What Payinto Does</h2>
-        <p class="mt-3 text-neutral-300">
-          Payinto is designed for teams that need a dependable way to collect, track, and operate
-          around digital payments without bloated workflows
-          <button
-            type="button"
-            (click)="handleWordClick('@payinto')"
-            [disabled]="!canClaimWords || isFound('@payinto')"
-            class="secret-word"
-          >
-            {{ displayWord('@payinto') }}
-          </button>
-          while keeping
-          <button
-            type="button"
-            (click)="handleWordClick('@payments')"
-            [disabled]="!canClaimWords || isFound('@payments')"
-            class="secret-word"
-          >
-            {{ displayWord('@payments') }}
-          </button>
-          reliable through
-          <button
-            type="button"
-            (click)="handleWordClick('!pulse')"
-            [disabled]="!canClaimWords || isFound('!pulse')"
-            class="secret-word"
-          >
-            {{ displayWord('!pulse') }}
-          </button>
-          checks and
-          <button
-            type="button"
-            (click)="handleWordClick('%quiet')"
-            [disabled]="!canClaimWords || isFound('%quiet')"
-            class="secret-word"
-          >
-            {{ displayWord('%quiet') }}
-          </button>
-          operational handoffs.
-        </p>
+    <section class="overflow-hidden rounded-3xl border border-white/20 bg-neutral-950 shadow-2xl">
+      <div class="bg-black p-2">
+        <img src="/payinto-banner.jpeg" alt="Official Payinto launch banner" class="h-auto w-full rounded-2xl object-contain" />
       </div>
-
-      <div class="grid gap-3">
-        <article
-          *ngFor="let highlight of appHighlights"
-          class="rounded-xl border border-white/15 bg-black px-4 py-3 text-sm text-neutral-200"
+      <div class="flex flex-wrap items-center justify-between gap-3 border-t border-white/10 px-5 py-4 md:px-6">
+        <p class="text-sm text-neutral-300">
+          Official Payinto launch banner. For full product information and app access, visit payinto.co.
+        </p>
+        <a
+          href="https://payinto.co"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rounded-full border border-white/35 px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-white transition hover:border-white"
         >
-          {{ highlight }}
+          Open payinto.co
+        </a>
+      </div>
+    </section>
+
+    <section class="rounded-3xl border border-white/15 bg-neutral-950/90 p-8 md:p-10">
+      <p class="text-xs uppercase tracking-[0.2em] text-neutral-400">Core Features</p>
+      <h2 class="mt-2 text-3xl font-bold text-white">Built For Daily Payment Operations</h2>
+      <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <article *ngFor="let card of featureCards" class="rounded-2xl border border-white/15 bg-black p-5">
+          <h3 class="text-2xl font-bold text-white">{{ card.title }}</h3>
+          <p class="mt-2 text-sm text-neutral-300">
+            {{ card.detail }}
+            Teams usually pair this with
+            <button
+              type="button"
+              (click)="handleWordClick(card.word)"
+              [disabled]="!canClaimWords || isFound(card.word)"
+              class="secret-word"
+            >
+              {{ displayWord(card.word) }}
+            </button>
+            setup patterns inside daily operations.
+          </p>
         </article>
       </div>
     </section>
 
-    <section id="agenda" class="relative rounded-3xl border border-white/15 bg-neutral-950/85 p-8 md:p-10">
-      <p class="text-xs uppercase tracking-[0.2em] text-neutral-400">Event Agenda</p>
-      <h2 class="mt-2 text-3xl font-bold text-white">Program Schedule</h2>
-      <p class="mt-2 text-sm text-neutral-400">
-        The agenda is intentionally practical with short, high-value sessions
-        <button
-          type="button"
-          (click)="handleWordClick('#agenda')"
-          [disabled]="!canClaimWords || isFound('#agenda')"
-          class="secret-word"
-        >
-          {{ displayWord('#agenda') }}
-        </button>
-        that map to
-        <button
-          type="button"
-          (click)="handleWordClick('@velocity')"
-          [disabled]="!canClaimWords || isFound('@velocity')"
-          class="secret-word"
-        >
-          {{ displayWord('@velocity') }}
-        </button>
-        goals, low
-        <button
-          type="button"
-          (click)="handleWordClick('!latency')"
-          [disabled]="!canClaimWords || isFound('!latency')"
-          class="secret-word"
-        >
-          {{ displayWord('!latency') }}
-        </button>
-        loops, and stronger
-        <button
-          type="button"
-          (click)="handleWordClick('%signal')"
-          [disabled]="!canClaimWords || isFound('%signal')"
-          class="secret-word"
-        >
-          {{ displayWord('%signal') }}
-        </button>
-        discipline.
-      </p>
-      <div class="mt-6 space-y-3">
-        <article
-          *ngFor="let item of eventAgenda"
-          class="rounded-xl border border-white/15 bg-black/80 p-4 md:flex md:items-start md:gap-6"
-        >
-          <p class="min-w-24 text-sm font-semibold text-white">{{ item.time }}</p>
-          <div class="mt-1 md:mt-0">
-            <h3 class="text-base font-semibold text-white">{{ item.title }}</h3>
-            <p class="mt-1 text-sm text-neutral-300">{{ item.detail }}</p>
-          </div>
+    <section class="rounded-3xl border border-white/15 bg-neutral-950/90 p-8 md:p-10">
+      <p class="text-xs uppercase tracking-[0.2em] text-neutral-400">Product Deep Dives</p>
+      <h2 class="mt-2 text-3xl font-bold text-white">Operational Insight Briefs</h2>
+      <div class="mt-6 grid gap-4 md:grid-cols-3">
+        <article *ngFor="let insight of insightPopups" class="rounded-2xl border border-white/20 bg-black p-5 text-left">
+          <button
+            type="button"
+            (click)="openInsight(insight)"
+            class="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-white/20 bg-white/5 transition hover:border-white/50"
+            [attr.aria-label]="'Open details for ' + insight.title"
+          >
+            @if (insight.icon === 'flows') {
+              <svg viewBox="0 0 24 24" fill="none" class="h-6 w-6 text-white" stroke="currentColor" stroke-width="1.8">
+                <path d="M7 7h4a3 3 0 0 1 0 6H9" />
+                <path d="M17 17h-4a3 3 0 1 1 0-6h2" />
+                <path d="M10 14l4-4" />
+              </svg>
+            }
+            @if (insight.icon === 'ops') {
+              <svg viewBox="0 0 24 24" fill="none" class="h-6 w-6 text-white" stroke="currentColor" stroke-width="1.8">
+                <path d="M4 7h16" />
+                <path d="M4 12h16" />
+                <path d="M4 17h10" />
+                <circle cx="18" cy="17" r="2" />
+              </svg>
+            }
+            @if (insight.icon === 'shield') {
+              <svg viewBox="0 0 24 24" fill="none" class="h-6 w-6 text-white" stroke="currentColor" stroke-width="1.8">
+                <path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" />
+                <path d="M9 12l2 2 4-4" />
+              </svg>
+            }
+          </button>
+          <h3 class="mt-4 text-xl font-bold text-white">{{ insight.title }}</h3>
+          <p class="mt-2 text-sm text-neutral-300">{{ insight.detail }}</p>
         </article>
       </div>
     </section>
 
-    <section class="relative space-y-5">
-      <div>
-        <p class="text-xs uppercase tracking-[0.2em] text-neutral-400">Speakers</p>
-        <h2 class="mt-2 text-3xl font-bold text-white">Featured Event Lineup</h2>
-        <p class="mt-2 text-sm text-neutral-300">
-          Click any speaker image to open a dedicated page with their session topic and discussion
-          points
-          <button
-            type="button"
-            (click)="handleWordClick('@speaker')"
-            [disabled]="!canClaimWords || isFound('@speaker')"
-            class="secret-word"
-          >
-            {{ displayWord('@speaker') }}
-          </button>
-          with operator-ready
-          <button
-            type="button"
-            (click)="handleWordClick('#merchant')"
-            [disabled]="!canClaimWords || isFound('#merchant')"
-            class="secret-word"
-          >
-            {{ displayWord('#merchant') }}
-          </button>
-          context and tighter
-          <button
-            type="button"
-            (click)="handleWordClick('$margin')"
-            [disabled]="!canClaimWords || isFound('$margin')"
-            class="secret-word"
-          >
-            {{ displayWord('$margin') }}
-          </button>
-          outcomes.
-        </p>
+    <section class="rounded-3xl border border-white/15 bg-neutral-950/90 p-8 md:p-10">
+      <p class="text-xs uppercase tracking-[0.2em] text-neutral-400">Integrations</p>
+      <h2 class="mt-2 text-3xl font-bold text-white">Powerful Integrations</h2>
+      <div class="mt-6 grid gap-4 md:grid-cols-3">
+        <article *ngFor="let card of integrationCards" class="rounded-2xl border border-white/15 bg-black p-5">
+          <h3 class="text-2xl font-bold text-white">{{ card.title }}</h3>
+          <p class="mt-2 text-sm text-neutral-300">
+            {{ card.detail }}
+            Integration teams often unlock
+            <button
+              type="button"
+              (click)="handleWordClick(card.word)"
+              [disabled]="!canClaimWords || isFound(card.word)"
+              class="secret-word"
+            >
+              {{ displayWord(card.word) }}
+            </button>
+            as a first deployment path.
+          </p>
+        </article>
       </div>
+      <div class="mt-6">
+        <a routerLink="/product-details" class="text-sm font-semibold text-neutral-300 hover:text-white">View all product details -></a>
+      </div>
+    </section>
 
-      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        <article
-          *ngFor="let speaker of speakers"
-          class="rounded-2xl border border-white/15 bg-neutral-950 p-5 transition hover:-translate-y-1 hover:border-white/50"
-        >
-          <a [routerLink]="['/speakers', speaker.id]" class="block">
-            <img
-              [src]="speaker.image"
-              [alt]="speaker.name"
-              class="h-52 w-full rounded-xl border border-white/15 object-cover grayscale"
-            />
+    <section class="grid gap-6 rounded-3xl border border-white/15 bg-neutral-950/90 p-8 md:grid-cols-2 md:p-10">
+      <div>
+        <p class="text-xs uppercase tracking-[0.2em] text-neutral-400">Event Spotlight</p>
+        <h2 class="mt-2 text-4xl font-black text-white md:text-5xl">Think. Build. Scale.</h2>
+        <p class="mt-4 max-w-xl text-lg leading-relaxed text-neutral-300 md:text-xl">
+          This event brings together operators, founders, and finance leaders to discuss practical growth strategies, including
+          <button type="button" (click)="handleWordClick('#speakergrid')" [disabled]="!canClaimWords || isFound('#speakergrid')" class="secret-word">
+            {{ displayWord('#speakergrid') }}
+          </button>
+          direction,
+          <button type="button" (click)="handleWordClick('@thoughtleadership')" [disabled]="!canClaimWords || isFound('@thoughtleadership')" class="secret-word">
+            {{ displayWord('@thoughtleadership') }}
+          </button>
+          depth, and
+          <button type="button" (click)="handleWordClick('%growthforum')" [disabled]="!canClaimWords || isFound('%growthforum')" class="secret-word">
+            {{ displayWord('%growthforum') }}
+          </button>
+          conversations for ambitious teams.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a routerLink="/speakers" class="rounded-full border border-white/35 px-5 py-2.5 text-sm font-semibold text-white hover:border-white">
+            Open Speakers Page
           </a>
-          <h3 class="mt-4 text-xl font-semibold text-white">{{ speaker.name }}</h3>
-          <p class="mt-1 text-sm text-neutral-300">{{ speaker.title }}</p>
-          <p class="mt-2 text-sm text-neutral-400">{{ speaker.topic }}</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="relative rounded-3xl border border-white/15 bg-neutral-950/90 p-8 md:p-10">
-      <p class="text-xs uppercase tracking-[0.2em] text-neutral-400">Why Attend</p>
-      <h2 class="mt-2 text-3xl font-bold text-white">What You Will Leave With</h2>
-      <div class="mt-6 grid gap-3 md:grid-cols-3">
-        <article class="rounded-xl border border-white/15 bg-black px-4 py-4 text-sm text-neutral-200">
-          A concrete view of how Payinto fits into real business payment operations and
-          <button
-            type="button"
-            (click)="handleWordClick('@settlement')"
-            [disabled]="!canClaimWords || isFound('@settlement')"
-            class="secret-word"
+          <a
+            href="https://payinto.co"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rounded-full border border-emerald-300/50 bg-emerald-500/10 px-5 py-2.5 text-sm font-semibold text-emerald-200 hover:border-emerald-200"
           >
-            {{ displayWord('@settlement') }}
-          </button>
-          visibility with
-          <button
-            type="button"
-            (click)="handleWordClick('!ledger')"
-            [disabled]="!canClaimWords || isFound('!ledger')"
-            class="secret-word"
-          >
-            {{ displayWord('!ledger') }}
-          </button>
-          context.
-        </article>
-        <article class="rounded-xl border border-white/15 bg-black px-4 py-4 text-sm text-neutral-200">
-          A framework for
-          <button
-            type="button"
-            (click)="handleWordClick('@onboarding')"
-            [disabled]="!canClaimWords || isFound('@onboarding')"
-            class="secret-word"
-          >
-            {{ displayWord('@onboarding') }}
-          </button>
-          , payment monitoring, and post-launch reliability planning.
-        </article>
-        <article class="rounded-xl border border-white/15 bg-black px-4 py-4 text-sm text-neutral-200">
-          Direct
-          <button
-            type="button"
-            (click)="handleWordClick('@insights')"
-            [disabled]="!canClaimWords || isFound('@insights')"
-            class="secret-word"
-          >
-            {{ displayWord('@insights') }}
-          </button>
-          from leaders building and scaling payment products in the field with fewer
-          <button
-            type="button"
-            (click)="handleWordClick('%delta')"
-            [disabled]="!canClaimWords || isFound('%delta')"
-            class="secret-word"
-          >
-            {{ displayWord('%delta') }}
-          </button>
-          surprises.
-        </article>
-      </div>
-    </section>
-
-    <section class="relative grid gap-6 rounded-3xl border border-white/15 bg-neutral-950/90 p-8 md:grid-cols-2 md:p-10">
-      <div>
-        <p class="text-xs uppercase tracking-[0.2em] text-neutral-400">Logistics</p>
-        <h2 class="mt-2 text-3xl font-bold text-white">Event Details</h2>
-        <div class="mt-4 space-y-3 text-sm text-neutral-300">
-          <p><span class="font-semibold text-white">Format:</span> Hybrid launch session</p>
-          <p><span class="font-semibold text-white">Access:</span> Registered attendees only</p>
-          <p>
-            <span class="font-semibold text-white">Duration:</span> Half-day program +
-            <button
-              type="button"
-              (click)="handleWordClick('#network')"
-              [disabled]="!canClaimWords || isFound('#network')"
-              class="secret-word"
-            >
-              {{ displayWord('#network') }}
-            </button>
-          </p>
-          <p>
-            <span class="font-semibold text-white">Host:</span> Payinto product and leadership team focused on
-            <button
-              type="button"
-              (click)="handleWordClick('#compliance')"
-              [disabled]="!canClaimWords || isFound('#compliance')"
-              class="secret-word"
-            >
-              {{ displayWord('#compliance') }}
-            </button>
-            and scale with
-            <button
-              type="button"
-              (click)="handleWordClick('%vault')"
-              [disabled]="!canClaimWords || isFound('%vault')"
-              class="secret-word"
-            >
-              {{ displayWord('%vault') }}
-            </button>
-            readiness.
-          </p>
+            More On payinto.co
+          </a>
         </div>
       </div>
-
-      <div>
-        <p class="text-xs uppercase tracking-[0.2em] text-neutral-400">How To Join</p>
-        <h3 class="mt-2 text-2xl font-bold text-white">Registration Steps</h3>
-        <ol class="mt-4 space-y-2 text-sm text-neutral-300">
-          <li class="rounded-lg border border-white/15 bg-black px-3 py-2">1. Review product context at payinto.co.</li>
-          <li class="rounded-lg border border-white/15 bg-black px-3 py-2">
-            2. Choose sessions you care about most and prioritize
-            <button
-              type="button"
-              (click)="handleWordClick('#reconcile')"
-              [disabled]="!canClaimWords || isFound('#reconcile')"
-              class="secret-word"
-            >
-              {{ displayWord('#reconcile') }}
-            </button>
-            workflows.
-          </li>
-          <li class="rounded-lg border border-white/15 bg-black px-3 py-2">
-            3. Attend live and ask practical implementation questions
-            <button
-              type="button"
-              (click)="handleWordClick('@eventday')"
-              [disabled]="!canClaimWords || isFound('@eventday')"
-              class="secret-word"
-            >
-              {{ displayWord('@eventday') }}
-            </button>
-            with
-            <button
-              type="button"
-              (click)="handleWordClick('#dashboard')"
-              [disabled]="!canClaimWords || isFound('#dashboard')"
-              class="secret-word"
-            >
-              {{ displayWord('#dashboard') }}
-            </button>
-            examples.
-          </li>
-        </ol>
+      <div class="overflow-hidden rounded-2xl border border-white/15 bg-black/60">
+        <img src="/general_speakers_flyer.jpeg" alt="Payinto event speakers" class="h-full w-full object-cover" />
       </div>
     </section>
 
-    <section class="relative rounded-3xl border border-white/15 bg-neutral-950/90 p-8 md:p-10">
+    <section class="rounded-3xl border border-white/15 bg-neutral-950/90 p-8 md:p-10">
+      <p class="text-xs uppercase tracking-[0.2em] text-neutral-400">Operator Trail</p>
+      <h2 class="mt-2 text-3xl font-bold text-white">Hidden Signals In Real Workflows</h2>
+      <div class="mt-6 space-y-4 text-sm text-neutral-300">
+        <p>
+          Teams aiming for
+          <button type="button" (click)="handleWordClick('#settlefast')" [disabled]="!canClaimWords || isFound('#settlefast')" class="secret-word">
+            {{ displayWord('#settlefast') }}
+          </button>
+          outcomes usually build an
+          <button type="button" (click)="handleWordClick('@riskdesk')" [disabled]="!canClaimWords || isFound('@riskdesk')" class="secret-word">
+            {{ displayWord('@riskdesk') }}
+          </button>
+          layer that watches
+          <button type="button" (click)="handleWordClick('$ledgerflow')" [disabled]="!canClaimWords || isFound('$ledgerflow')" class="secret-word">
+            {{ displayWord('$ledgerflow') }}
+          </button>
+          with continuous
+          <button type="button" (click)="handleWordClick('%monitoring')" [disabled]="!canClaimWords || isFound('%monitoring')" class="secret-word">
+            {{ displayWord('%monitoring') }}
+          </button>
+          and cleaner
+          <button type="button" (click)="handleWordClick('!handoffs')" [disabled]="!canClaimWords || isFound('!handoffs')" class="secret-word">
+            {{ displayWord('!handoffs') }}
+          </button>
+          between operations and finance.
+        </p>
+        <p>
+          During high volume windows, each
+          <button type="button" (click)="handleWordClick('@exceptions')" [disabled]="!canClaimWords || isFound('@exceptions')" class="secret-word">
+            {{ displayWord('@exceptions') }}
+          </button>
+          queue needs better
+          <button type="button" (click)="handleWordClick('#throughput')" [disabled]="!canClaimWords || isFound('#throughput')" class="secret-word">
+            {{ displayWord('#throughput') }}
+          </button>
+          tracking, complete
+          <button type="button" (click)="handleWordClick('$audittrail')" [disabled]="!canClaimWords || isFound('$audittrail')" class="secret-word">
+            {{ displayWord('$audittrail') }}
+          </button>
+          visibility, and shared
+          <button type="button" (click)="handleWordClick('%healthscore')" [disabled]="!canClaimWords || isFound('%healthscore')" class="secret-word">
+            {{ displayWord('%healthscore') }}
+          </button>
+          metrics before
+          <button type="button" (click)="handleWordClick('!approvals')" [disabled]="!canClaimWords || isFound('!approvals')" class="secret-word">
+            {{ displayWord('!approvals') }}
+          </button>
+          are finalized.
+        </p>
+        <p>
+          Mature teams rely on
+          <button type="button" (click)="handleWordClick('@opsintel')" [disabled]="!canClaimWords || isFound('@opsintel')" class="secret-word">
+            {{ displayWord('@opsintel') }}
+          </button>
+          dashboards, fast
+          <button type="button" (click)="handleWordClick('#collector')" [disabled]="!canClaimWords || isFound('#collector')" class="secret-word">
+            {{ displayWord('#collector') }}
+          </button>
+          views,
+          <button type="button" (click)="handleWordClick('$chargeflow')" [disabled]="!canClaimWords || isFound('$chargeflow')" class="secret-word">
+            {{ displayWord('$chargeflow') }}
+          </button>
+          checks, and stable
+          <button type="button" (click)="handleWordClick('%cashview')" [disabled]="!canClaimWords || isFound('%cashview')" class="secret-word">
+            {{ displayWord('%cashview') }}
+          </button>
+          reporting when
+          <button type="button" (click)="handleWordClick('!fallback')" [disabled]="!canClaimWords || isFound('!fallback')" class="secret-word">
+            {{ displayWord('!fallback') }}
+          </button>
+          scenarios happen.
+        </p>
+        <p>
+          Recovery playbooks blend
+          <button type="button" (click)="handleWordClick('@recovery')" [disabled]="!canClaimWords || isFound('@recovery')" class="secret-word">
+            {{ displayWord('@recovery') }}
+          </button>
+          plans with
+          <button type="button" (click)="handleWordClick('#sla')" [disabled]="!canClaimWords || isFound('#sla')" class="secret-word">
+            {{ displayWord('#sla') }}
+          </button>
+          targets,
+          <button type="button" (click)="handleWordClick('$safehold')" [disabled]="!canClaimWords || isFound('$safehold')" class="secret-word">
+            {{ displayWord('$safehold') }}
+          </button>
+          controls, and
+          <button type="button" (click)="handleWordClick('%proof')" [disabled]="!canClaimWords || isFound('%proof')" class="secret-word">
+            {{ displayWord('%proof') }}
+          </button>
+          evidence trails while
+          <button type="button" (click)="handleWordClick('!matchings')" [disabled]="!canClaimWords || isFound('!matchings')" class="secret-word">
+            {{ displayWord('!matchings') }}
+          </button>
+          and
+          <button type="button" (click)="handleWordClick('@autopayout')" [disabled]="!canClaimWords || isFound('@autopayout')" class="secret-word">
+            {{ displayWord('@autopayout') }}
+          </button>
+          jobs are running.
+        </p>
+        <p>
+          Advanced stacks include
+          <button type="button" (click)="handleWordClick('#retrylogic')" [disabled]="!canClaimWords || isFound('#retrylogic')" class="secret-word">
+            {{ displayWord('#retrylogic') }}
+          </button>
+          engines,
+          <button type="button" (click)="handleWordClick('$netting')" [disabled]="!canClaimWords || isFound('$netting')" class="secret-word">
+            {{ displayWord('$netting') }}
+          </button>
+          rules,
+          <button type="button" (click)="handleWordClick('%stability')" [disabled]="!canClaimWords || isFound('%stability')" class="secret-word">
+            {{ displayWord('%stability') }}
+          </button>
+          monitoring,
+          <button type="button" (click)="handleWordClick('!guardrails')" [disabled]="!canClaimWords || isFound('!guardrails')" class="secret-word">
+            {{ displayWord('!guardrails') }}
+          </button>
+          policies, and
+          <button type="button" (click)="handleWordClick('@queueing')" [disabled]="!canClaimWords || isFound('@queueing')" class="secret-word">
+            {{ displayWord('@queueing') }}
+          </button>
+          discipline across a
+          <button type="button" (click)="handleWordClick('#signalmesh')" [disabled]="!canClaimWords || isFound('#signalmesh')" class="secret-word">
+            {{ displayWord('#signalmesh') }}
+          </button>
+          architecture that flags
+          <button type="button" (click)="handleWordClick('$variance')" [disabled]="!canClaimWords || isFound('$variance')" class="secret-word">
+            {{ displayWord('$variance') }}
+          </button>
+          against
+          <button type="button" (click)="handleWordClick('%benchmark')" [disabled]="!canClaimWords || isFound('%benchmark')" class="secret-word">
+            {{ displayWord('%benchmark') }}
+          </button>
+          goals so
+          <button type="button" (click)="handleWordClick('!finops')" [disabled]="!canClaimWords || isFound('!finops')" class="secret-word">
+            {{ displayWord('!finops') }}
+          </button>
+          teams can ship from shared
+          <button type="button" (click)="handleWordClick('@playbooks')" [disabled]="!canClaimWords || isFound('@playbooks')" class="secret-word">
+            {{ displayWord('@playbooks') }}
+          </button>
+          .
+        </p>
+      </div>
+    </section>
+
+    <section class="rounded-3xl border border-white/15 bg-neutral-950/90 p-8 md:p-10">
       <p class="text-xs uppercase tracking-[0.2em] text-neutral-400">FAQ</p>
       <h2 class="mt-2 text-3xl font-bold text-white">Common Questions</h2>
       <div class="mt-6 space-y-3">
-        <article *ngFor="let item of faqs" class="rounded-xl border border-white/15 bg-black p-4">
-          <h3 class="text-sm font-semibold text-white">{{ item.question }}</h3>
-          <p class="mt-2 text-sm text-neutral-300">
+        <article *ngFor="let item of supportItems" class="rounded-xl border border-white/15 bg-black p-5">
+          <h3 class="text-xl font-bold text-white">{{ item.question }}</h3>
+          <p class="mt-3 text-sm text-neutral-300">
             {{ item.answer }}
-            @if (item.question === 'Can I access materials after the event?') {
-              <button
-                type="button"
-                (click)="handleWordClick('#questions')"
-                [disabled]="!canClaimWords || isFound('#questions')"
-                class="secret-word"
-              >
-                {{ displayWord('#questions') }}
-              </button>
-            } @else if (item.question === 'Who should attend?') {
-              <button
-                type="button"
-                (click)="handleWordClick('#merchant')"
-                [disabled]="!canClaimWords || isFound('#merchant')"
-                class="secret-word"
-              >
-                {{ displayWord('#merchant') }}
-              </button>
-            } @else if (item.question === 'How do I learn more before launch day?') {
-              <button
-                type="button"
-                (click)="handleWordClick('!pulse')"
-                [disabled]="!canClaimWords || isFound('!pulse')"
-                class="secret-word"
-              >
-                {{ displayWord('!pulse') }}
-              </button>
-            }
+            Teams also keep
+            <button
+              type="button"
+              (click)="handleWordClick(item.word)"
+              [disabled]="!canClaimWords || isFound(item.word)"
+              class="secret-word"
+            >
+              {{ displayWord(item.word) }}
+            </button>
+            documented inside onboarding playbooks.
           </p>
         </article>
       </div>
     </section>
 
-    <section class="relative rounded-3xl border border-white/20 bg-gradient-to-br from-white to-neutral-200 p-8 text-black md:p-10">
-      <p class="text-xs uppercase tracking-[0.2em] text-black/60">Final Call</p>
-      <h2 class="mt-2 text-3xl font-bold">Join The Payinto Launch Experience</h2>
-      <p class="mt-3 max-w-3xl text-sm text-black/75">
-        Explore the product, learn from the team, and leave with clear ideas for improving your
-        payment stack
+    <section class="rounded-3xl border border-white/15 bg-neutral-950/90 p-8 md:p-10">
+      <p class="text-xs uppercase tracking-[0.2em] text-neutral-400">Compliance Notice</p>
+      <h2 class="mt-2 text-3xl font-bold text-white">Legal and Regulatory Information</h2>
+      <p class="mt-4 text-sm text-neutral-300">© 2026 Payinto. All rights reserved.</p>
+      <p class="mt-4 text-sm text-neutral-300">
+        Payinto is a registered trademark of Retenvo Technologies Limited
         <button
           type="button"
-          (click)="handleWordClick('@checkout')"
-          [disabled]="!canClaimWords || isFound('@checkout')"
+          (click)="handleWordClick('@retenvo')"
+          [disabled]="!canClaimWords || isFound('@retenvo')"
           class="secret-word"
         >
-          {{ displayWord('@checkout') }}
+          {{ displayWord('@retenvo') }}
         </button>
-        and faster
+        . Partner banking services are licensed by
         <button
           type="button"
-          (click)="handleWordClick('@settlement')"
-          [disabled]="!canClaimWords || isFound('@settlement')"
+          (click)="handleWordClick('!cbn')"
+          [disabled]="!canClaimWords || isFound('!cbn')"
           class="secret-word"
         >
-          {{ displayWord('@settlement') }}
+          {{ displayWord('!cbn') }}
         </button>
-        cycles, plus cleaner
+        and insured by
         <button
           type="button"
-          (click)="handleWordClick('!ledger')"
-          [disabled]="!canClaimWords || isFound('!ledger')"
+          (click)="handleWordClick('%ndic')"
+          [disabled]="!canClaimWords || isFound('%ndic')"
           class="secret-word"
         >
-          {{ displayWord('!ledger') }}
+          {{ displayWord('%ndic') }}
         </button>
-        stories for operators.
+        .
       </p>
-      <a
-        href="https://payinto.co"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="mt-6 inline-flex rounded-full bg-black px-6 py-3 text-sm font-bold text-white transition hover:bg-neutral-800"
-      >
-        Explore Payinto
-      </a>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a
+          href="https://payinto.co"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rounded-full border border-white/35 px-5 py-2.5 text-sm font-semibold text-white hover:border-white"
+        >
+          More Details
+        </a>
+        <a
+          href="https://payinto.co"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rounded-full border border-emerald-300/50 bg-emerald-500/10 px-5 py-2.5 text-sm font-semibold text-emerald-200 hover:border-emerald-200"
+        >
+          Download App
+        </a>
+      </div>
     </section>
   </main>
 </div>
+
+@if (activeInsight) {
+  <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
+    <section class="w-full max-w-lg rounded-2xl border border-white/20 bg-neutral-950 p-6">
+      <div class="flex items-start justify-between gap-3">
+        <div>
+          <p class="text-xs uppercase tracking-[0.2em] text-neutral-400">Insight Panel</p>
+          <h2 class="mt-1 text-2xl font-bold text-white">{{ activeInsight.title }}</h2>
+        </div>
+        <button
+          type="button"
+          (click)="closeInsight()"
+          class="rounded-lg border border-white/25 px-3 py-1 text-sm text-neutral-300 hover:border-white hover:text-white"
+        >
+          Close
+        </button>
+      </div>
+      <p class="mt-3 text-sm text-neutral-300">{{ activeInsight.detail }}</p>
+
+      <div class="mt-4 space-y-3">
+        <div *ngFor="let point of activeInsight.points" class="rounded-xl border border-white/15 bg-black p-3 text-sm text-neutral-200">
+          {{ point.label }}
+          <button
+            type="button"
+            (click)="handleWordClick(point.word)"
+            [disabled]="!canClaimWords || isFound(point.word)"
+            class="secret-word font-semibold"
+          >
+            {{ displayWord(point.word) }}
+          </button>
+        </div>
+      </div>
+    </section>
+  </div>
+}
 
 @if (showBonusModal) {
   <div class="fixed inset-0 z-40 flex items-center justify-center bg-black/80 p-4">

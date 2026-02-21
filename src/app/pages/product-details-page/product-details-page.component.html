@@ -1,0 +1,213 @@
+<div class="mx-auto max-w-6xl space-y-10 px-4 py-10 md:px-8 md:py-14">
+  <section class="rounded-3xl border border-white/20 bg-gradient-to-br from-black via-neutral-900 to-black p-8 md:p-10">
+    <p class="text-xs uppercase tracking-[0.2em] text-neutral-400">View All Details</p>
+    <h1 class="mt-2 text-4xl font-black text-white">Payinto Platform Breakdown</h1>
+      <p class="mt-3 max-w-3xl text-sm text-neutral-300">
+        Explore deeper product detail across operations, analytics, compliance, and growth workflows.
+        <button
+        type="button"
+        (click)="handleWordClick('#coverage')"
+        [disabled]="!canClaimWords || isFound('#coverage')"
+        class="secret-word"
+      >
+          {{ displayWord('#coverage') }}
+        </button>
+        while teams coordinate
+        <button
+          type="button"
+          (click)="handleWordClick('@opsrouting')"
+          [disabled]="!canClaimWords || isFound('@opsrouting')"
+          class="secret-word"
+        >
+          {{ displayWord('@opsrouting') }}
+        </button>
+        and improve
+        <button
+          type="button"
+          (click)="handleWordClick('%insightloop')"
+          [disabled]="!canClaimWords || isFound('%insightloop')"
+          class="secret-word"
+        >
+          {{ displayWord('%insightloop') }}
+        </button>
+        decisions.
+      </p>
+
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a routerLink="/" class="rounded-full border border-white/35 px-5 py-2.5 text-sm font-semibold text-white hover:border-white">
+        Back To Landing
+      </a>
+      <a
+        href="https://payinto.co"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="rounded-full bg-white px-5 py-2.5 text-sm font-bold text-black hover:bg-neutral-200"
+      >
+        Visit payinto.co
+      </a>
+      <a
+        href="https://payinto.co"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="rounded-full border border-emerald-300/50 bg-emerald-500/10 px-5 py-2.5 text-sm font-semibold text-emerald-200 hover:border-emerald-200"
+      >
+        Download App
+      </a>
+    </div>
+  </section>
+
+  <section class="grid gap-4 md:grid-cols-2">
+    <article *ngFor="let block of detailBlocks" class="rounded-2xl border border-white/15 bg-neutral-950 p-6">
+      <h2 class="text-2xl font-bold text-white">{{ block.title }}</h2>
+      <p class="mt-3 text-sm text-neutral-300">
+        {{ block.detail }}
+        Teams usually map this to
+        <button
+          type="button"
+          (click)="handleWordClick(block.word)"
+          [disabled]="!canClaimWords || isFound(block.word)"
+          class="secret-word"
+        >
+          {{ displayWord(block.word) }}
+        </button>
+        milestones and
+        <button
+          type="button"
+          (click)="handleWordClick('!handoffmap')"
+          [disabled]="!canClaimWords || isFound('!handoffmap')"
+          class="secret-word"
+        >
+          {{ displayWord('!handoffmap') }}
+        </button>
+        checks.
+      </p>
+    </article>
+  </section>
+
+  <section class="rounded-2xl border border-white/15 bg-neutral-950 p-6">
+    <h2 class="text-2xl font-bold text-white">Extra Ops Notes</h2>
+    <p class="mt-3 text-sm text-neutral-300">
+      Use
+      <button
+        type="button"
+        (click)="handleWordClick('@alerts')"
+        [disabled]="!canClaimWords || isFound('@alerts')"
+        class="secret-word"
+      >
+        {{ displayWord('@alerts') }}
+      </button>
+      for payment reminders,
+      <button
+        type="button"
+        (click)="handleWordClick('$exports')"
+        [disabled]="!canClaimWords || isFound('$exports')"
+        class="secret-word"
+      >
+        {{ displayWord('$exports') }}
+      </button>
+      for reporting, and
+      <button
+        type="button"
+        (click)="handleWordClick('!riskchecks')"
+        [disabled]="!canClaimWords || isFound('!riskchecks')"
+        class="secret-word"
+      >
+        {{ displayWord('!riskchecks') }}
+      </button>
+      for stronger controls, then verify
+      <button
+        type="button"
+        (click)="handleWordClick('#cashtrail')"
+        [disabled]="!canClaimWords || isFound('#cashtrail')"
+        class="secret-word"
+      >
+        {{ displayWord('#cashtrail') }}
+      </button>
+      movement against
+      <button
+        type="button"
+        (click)="handleWordClick('$riskbuffer')"
+        [disabled]="!canClaimWords || isFound('$riskbuffer')"
+        class="secret-word"
+      >
+        {{ displayWord('$riskbuffer') }}
+      </button>
+      policy and
+      <button
+        type="button"
+        (click)="handleWordClick('%followthrough')"
+        [disabled]="!canClaimWords || isFound('%followthrough')"
+        class="secret-word"
+      >
+        {{ displayWord('%followthrough') }}
+      </button>
+      outcomes.
+    </p>
+    <p class="mt-3 text-sm text-neutral-300">
+      Leadership teams use
+      <button
+        type="button"
+        (click)="handleWordClick('!priorities')"
+        [disabled]="!canClaimWords || isFound('!priorities')"
+        class="secret-word"
+      >
+        {{ displayWord('!priorities') }}
+      </button>
+      planning,
+      <button
+        type="button"
+        (click)="handleWordClick('@execview')"
+        [disabled]="!canClaimWords || isFound('@execview')"
+        class="secret-word"
+      >
+        {{ displayWord('@execview') }}
+      </button>
+      dashboards, and
+      <button
+        type="button"
+        (click)="handleWordClick('#queuehealth')"
+        [disabled]="!canClaimWords || isFound('#queuehealth')"
+        class="secret-word"
+      >
+        {{ displayWord('#queuehealth') }}
+      </button>
+      alerts to maintain
+      <button
+        type="button"
+        (click)="handleWordClick('$opscadence')"
+        [disabled]="!canClaimWords || isFound('$opscadence')"
+        class="secret-word"
+      >
+        {{ displayWord('$opscadence') }}
+      </button>
+      with clear
+      <button
+        type="button"
+        (click)="handleWordClick('%reportline')"
+        [disabled]="!canClaimWords || isFound('%reportline')"
+        class="secret-word"
+      >
+        {{ displayWord('%reportline') }}
+      </button>
+      and final
+      <button
+        type="button"
+        (click)="handleWordClick('!checkpoint')"
+        [disabled]="!canClaimWords || isFound('!checkpoint')"
+        class="secret-word"
+      >
+        {{ displayWord('!checkpoint') }}
+      </button>
+      sign-offs.
+    </p>
+  </section>
+</div>
+
+@if (selectedWord) {
+  <app-claim-word-modal
+    [word]="selectedWord.label"
+    [label]="selectedWord.label"
+    (close)="closeClaimModal()"
+    (claimed)="handleClaimed($event)"
+  ></app-claim-word-modal>
+}
