@@ -7,7 +7,7 @@
         <button
         type="button"
         (click)="handleWordClick('#coverage')"
-        [disabled]="!canClaimWords || isFound('#coverage')"
+        [disabled]="!canClaimWords"
         class="secret-word"
       >
           {{ displayWord('#coverage') }}
@@ -16,7 +16,7 @@
         <button
           type="button"
           (click)="handleWordClick('@opsrouting')"
-          [disabled]="!canClaimWords || isFound('@opsrouting')"
+          [disabled]="!canClaimWords"
           class="secret-word"
         >
           {{ displayWord('@opsrouting') }}
@@ -25,7 +25,7 @@
         <button
           type="button"
           (click)="handleWordClick('%insightloop')"
-          [disabled]="!canClaimWords || isFound('%insightloop')"
+          [disabled]="!canClaimWords"
           class="secret-word"
         >
           {{ displayWord('%insightloop') }}
@@ -65,7 +65,7 @@
         <button
           type="button"
           (click)="handleWordClick(block.word)"
-          [disabled]="!canClaimWords || isFound(block.word)"
+          [disabled]="!canClaimWords"
           class="secret-word"
         >
           {{ displayWord(block.word) }}
@@ -74,7 +74,7 @@
         <button
           type="button"
           (click)="handleWordClick('!handoffmap')"
-          [disabled]="!canClaimWords || isFound('!handoffmap')"
+          [disabled]="!canClaimWords"
           class="secret-word"
         >
           {{ displayWord('!handoffmap') }}
@@ -91,7 +91,7 @@
       <button
         type="button"
         (click)="handleWordClick('@alerts')"
-        [disabled]="!canClaimWords || isFound('@alerts')"
+        [disabled]="!canClaimWords"
         class="secret-word"
       >
         {{ displayWord('@alerts') }}
@@ -100,7 +100,7 @@
       <button
         type="button"
         (click)="handleWordClick('$exports')"
-        [disabled]="!canClaimWords || isFound('$exports')"
+        [disabled]="!canClaimWords"
         class="secret-word"
       >
         {{ displayWord('$exports') }}
@@ -109,7 +109,7 @@
       <button
         type="button"
         (click)="handleWordClick('!riskchecks')"
-        [disabled]="!canClaimWords || isFound('!riskchecks')"
+        [disabled]="!canClaimWords"
         class="secret-word"
       >
         {{ displayWord('!riskchecks') }}
@@ -118,7 +118,7 @@
       <button
         type="button"
         (click)="handleWordClick('#cashtrail')"
-        [disabled]="!canClaimWords || isFound('#cashtrail')"
+        [disabled]="!canClaimWords"
         class="secret-word"
       >
         {{ displayWord('#cashtrail') }}
@@ -127,7 +127,7 @@
       <button
         type="button"
         (click)="handleWordClick('$riskbuffer')"
-        [disabled]="!canClaimWords || isFound('$riskbuffer')"
+        [disabled]="!canClaimWords"
         class="secret-word"
       >
         {{ displayWord('$riskbuffer') }}
@@ -136,7 +136,7 @@
       <button
         type="button"
         (click)="handleWordClick('%followthrough')"
-        [disabled]="!canClaimWords || isFound('%followthrough')"
+        [disabled]="!canClaimWords"
         class="secret-word"
       >
         {{ displayWord('%followthrough') }}
@@ -148,7 +148,7 @@
       <button
         type="button"
         (click)="handleWordClick('!priorities')"
-        [disabled]="!canClaimWords || isFound('!priorities')"
+        [disabled]="!canClaimWords"
         class="secret-word"
       >
         {{ displayWord('!priorities') }}
@@ -157,7 +157,7 @@
       <button
         type="button"
         (click)="handleWordClick('@execview')"
-        [disabled]="!canClaimWords || isFound('@execview')"
+        [disabled]="!canClaimWords"
         class="secret-word"
       >
         {{ displayWord('@execview') }}
@@ -166,7 +166,7 @@
       <button
         type="button"
         (click)="handleWordClick('#queuehealth')"
-        [disabled]="!canClaimWords || isFound('#queuehealth')"
+        [disabled]="!canClaimWords"
         class="secret-word"
       >
         {{ displayWord('#queuehealth') }}
@@ -175,7 +175,7 @@
       <button
         type="button"
         (click)="handleWordClick('$opscadence')"
-        [disabled]="!canClaimWords || isFound('$opscadence')"
+        [disabled]="!canClaimWords"
         class="secret-word"
       >
         {{ displayWord('$opscadence') }}
@@ -184,7 +184,7 @@
       <button
         type="button"
         (click)="handleWordClick('%reportline')"
-        [disabled]="!canClaimWords || isFound('%reportline')"
+        [disabled]="!canClaimWords"
         class="secret-word"
       >
         {{ displayWord('%reportline') }}
@@ -193,7 +193,7 @@
       <button
         type="button"
         (click)="handleWordClick('!checkpoint')"
-        [disabled]="!canClaimWords || isFound('!checkpoint')"
+        [disabled]="!canClaimWords"
         class="secret-word"
       >
         {{ displayWord('!checkpoint') }}

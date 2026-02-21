@@ -335,7 +335,7 @@ export class GamePageComponent implements OnInit, OnDestroy {
     }
 
     const word = this.hiddenWords.find((item) => item.label === wordLabel);
-    if (!word || this.foundWords.has(word.label)) {
+    if (!word) {
       return;
     }
 
@@ -365,10 +365,6 @@ export class GamePageComponent implements OnInit, OnDestroy {
     this.toastService.success(`${response.word} claimed (+${response.pointsAwarded}).`);
 
     this.scheduleNextBonusPopup();
-  }
-
-  isFound(word: string): boolean {
-    return this.foundWords.has(word);
   }
 
   revealBonusWord(): void {

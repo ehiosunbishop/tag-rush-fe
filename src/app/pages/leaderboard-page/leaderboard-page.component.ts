@@ -33,7 +33,6 @@ export class LeaderboardPageComponent {
   ];
 
   selectedWord: Word | null = null;
-  foundWords = new Set<string>();
 
   constructor(
     private readonly authService: AuthService,
@@ -101,7 +100,7 @@ export class LeaderboardPageComponent {
     }
 
     const word = this.hiddenWords.find((item) => item.label === wordLabel);
-    if (!word || this.foundWords.has(word.label)) {
+    if (!word) {
       return;
     }
 
@@ -113,16 +112,8 @@ export class LeaderboardPageComponent {
   }
 
   handleClaimed(response: ClaimWordResponse): void {
-    if (this.selectedWord) {
-      this.foundWords.add(this.selectedWord.label);
-    }
-
     this.selectedWord = null;
     this.toastService.success(`${response.word} claimed (+${response.pointsAwarded}).`);
-  }
-
-  isFoundWord(word: string): boolean {
-    return this.foundWords.has(word);
   }
 
   displayWord(wordLabel: string): string {

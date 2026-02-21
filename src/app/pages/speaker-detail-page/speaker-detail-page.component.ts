@@ -47,7 +47,7 @@ export class SpeakerDetailPageComponent implements OnInit, OnDestroy {
 
   openClaimModal(wordLabel: string): void {
     const word = this.hiddenWords.find((item) => item.label === wordLabel);
-    if (!word || this.foundWords.has(word.label)) {
+    if (!word) {
       return;
     }
     this.showHintModal = false;
@@ -65,10 +65,6 @@ export class SpeakerDetailPageComponent implements OnInit, OnDestroy {
     }
     this.selectedWord = null;
     this.toastService.success(`${response.word} claimed (+${response.pointsAwarded}).`);
-  }
-
-  isFound(word: string): boolean {
-    return this.foundWords.has(word);
   }
 
   revealHintWord(): void {

@@ -11,7 +11,7 @@
           <button
             type="button"
             (click)="handleWordClick(':logoecho')"
-            [disabled]="!canClaimWords || isFound(':logoecho')"
+            [disabled]="!canClaimWords"
             class="secret-word secret-word-faint absolute -left-2 top-1/2 -translate-y-1/2"
           >
             {{ displayWord(':logoecho') }}
@@ -25,7 +25,7 @@
           <button
             type="button"
             (click)="handleWordClick('#payments')"
-            [disabled]="!canClaimWords || isFound('#payments')"
+            [disabled]="!canClaimWords"
             class="secret-word"
           >
             {{ displayWord('#payments') }}
@@ -38,7 +38,7 @@
         <button
           type="button"
           (click)="handleWordClick('#realtime')"
-          [disabled]="!canClaimWords || isFound('#realtime')"
+          [disabled]="!canClaimWords"
           class="secret-word"
         >
           {{ displayWord('#realtime') }}
@@ -47,7 +47,7 @@
         <button
           type="button"
           (click)="handleWordClick('#transfers')"
-          [disabled]="!canClaimWords || isFound('#transfers')"
+          [disabled]="!canClaimWords"
           class="secret-word"
         >
           {{ displayWord('#transfers') }}
@@ -56,7 +56,7 @@
         <button
           type="button"
           (click)="handleWordClick('$controls')"
-          [disabled]="!canClaimWords || isFound('$controls')"
+          [disabled]="!canClaimWords"
           class="secret-word"
         >
           {{ displayWord('$controls') }}
@@ -101,7 +101,7 @@
           <button
             type="button"
             (click)="handleWordClick(':shadowrail')"
-            [disabled]="!canClaimWords || isFound(':shadowrail')"
+            [disabled]="!canClaimWords"
             class="secret-word secret-word-faint"
           >
             {{ displayWord(':shadowrail') }}
@@ -131,7 +131,7 @@
             <button
               type="button"
               (click)="handleWordClick(card.word)"
-              [disabled]="!canClaimWords || isFound(card.word)"
+              [disabled]="!canClaimWords"
               class="secret-word"
             >
               {{ displayWord(card.word) }}
@@ -193,7 +193,7 @@
             <button
               type="button"
               (click)="handleWordClick(card.word)"
-              [disabled]="!canClaimWords || isFound(card.word)"
+              [disabled]="!canClaimWords"
               class="secret-word"
             >
               {{ displayWord(card.word) }}
@@ -208,7 +208,7 @@
           <button
             type="button"
             (click)="handleWordClick(':deeptrace')"
-            [disabled]="!canClaimWords || isFound(':deeptrace')"
+            [disabled]="!canClaimWords"
             class="secret-word secret-word-faint"
           >
             {{ displayWord(':deeptrace') }}
@@ -223,15 +223,15 @@
         <h2 class="mt-2 text-4xl font-black text-white md:text-5xl">Think. Build. Scale.</h2>
         <p class="mt-4 max-w-xl text-lg leading-relaxed text-neutral-300 md:text-xl">
           This event brings together operators, founders, and finance leaders to discuss practical growth strategies, including
-          <button type="button" (click)="handleWordClick('#speakergrid')" [disabled]="!canClaimWords || isFound('#speakergrid')" class="secret-word">
+          <button type="button" (click)="handleWordClick('#speakergrid')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('#speakergrid') }}
           </button>
           direction,
-          <button type="button" (click)="handleWordClick('@thoughtleadership')" [disabled]="!canClaimWords || isFound('@thoughtleadership')" class="secret-word">
+          <button type="button" (click)="handleWordClick('@thoughtleadership')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('@thoughtleadership') }}
           </button>
           depth, and
-          <button type="button" (click)="handleWordClick('%growthforum')" [disabled]="!canClaimWords || isFound('%growthforum')" class="secret-word">
+          <button type="button" (click)="handleWordClick('%growthforum')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('%growthforum') }}
           </button>
           conversations for ambitious teams.
@@ -262,7 +262,7 @@
         <button
           type="button"
           (click)="handleWordClick(':lowpulse')"
-          [disabled]="!canClaimWords || isFound(':lowpulse')"
+          [disabled]="!canClaimWords"
           class="secret-word secret-word-faint"
         >
           {{ displayWord(':lowpulse') }}
@@ -271,139 +271,139 @@
       <div class="mt-6 space-y-4 text-sm text-neutral-300">
         <p>
           Teams aiming for
-          <button type="button" (click)="handleWordClick('#settlefast')" [disabled]="!canClaimWords || isFound('#settlefast')" class="secret-word">
+          <button type="button" (click)="handleWordClick('#settlefast')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('#settlefast') }}
           </button>
           outcomes usually build an
-          <button type="button" (click)="handleWordClick('@riskdesk')" [disabled]="!canClaimWords || isFound('@riskdesk')" class="secret-word">
+          <button type="button" (click)="handleWordClick('@riskdesk')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('@riskdesk') }}
           </button>
           layer that watches
-          <button type="button" (click)="handleWordClick('$ledgerflow')" [disabled]="!canClaimWords || isFound('$ledgerflow')" class="secret-word">
+          <button type="button" (click)="handleWordClick('$ledgerflow')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('$ledgerflow') }}
           </button>
           with continuous
-          <button type="button" (click)="handleWordClick('%monitoring')" [disabled]="!canClaimWords || isFound('%monitoring')" class="secret-word">
+          <button type="button" (click)="handleWordClick('%monitoring')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('%monitoring') }}
           </button>
           and cleaner
-          <button type="button" (click)="handleWordClick('!handoffs')" [disabled]="!canClaimWords || isFound('!handoffs')" class="secret-word">
+          <button type="button" (click)="handleWordClick('!handoffs')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('!handoffs') }}
           </button>
           between operations and finance.
         </p>
         <p>
           During high volume windows, each
-          <button type="button" (click)="handleWordClick('@exceptions')" [disabled]="!canClaimWords || isFound('@exceptions')" class="secret-word">
+          <button type="button" (click)="handleWordClick('@exceptions')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('@exceptions') }}
           </button>
           queue needs better
-          <button type="button" (click)="handleWordClick('#throughput')" [disabled]="!canClaimWords || isFound('#throughput')" class="secret-word">
+          <button type="button" (click)="handleWordClick('#throughput')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('#throughput') }}
           </button>
           tracking, complete
-          <button type="button" (click)="handleWordClick('$audittrail')" [disabled]="!canClaimWords || isFound('$audittrail')" class="secret-word">
+          <button type="button" (click)="handleWordClick('$audittrail')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('$audittrail') }}
           </button>
           visibility, and shared
-          <button type="button" (click)="handleWordClick('%healthscore')" [disabled]="!canClaimWords || isFound('%healthscore')" class="secret-word">
+          <button type="button" (click)="handleWordClick('%healthscore')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('%healthscore') }}
           </button>
           metrics before
-          <button type="button" (click)="handleWordClick('!approvals')" [disabled]="!canClaimWords || isFound('!approvals')" class="secret-word">
+          <button type="button" (click)="handleWordClick('!approvals')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('!approvals') }}
           </button>
           are finalized.
         </p>
         <p>
           Mature teams rely on
-          <button type="button" (click)="handleWordClick('@opsintel')" [disabled]="!canClaimWords || isFound('@opsintel')" class="secret-word">
+          <button type="button" (click)="handleWordClick('@opsintel')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('@opsintel') }}
           </button>
           dashboards, fast
-          <button type="button" (click)="handleWordClick('#collector')" [disabled]="!canClaimWords || isFound('#collector')" class="secret-word">
+          <button type="button" (click)="handleWordClick('#collector')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('#collector') }}
           </button>
           views,
-          <button type="button" (click)="handleWordClick('$chargeflow')" [disabled]="!canClaimWords || isFound('$chargeflow')" class="secret-word">
+          <button type="button" (click)="handleWordClick('$chargeflow')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('$chargeflow') }}
           </button>
           checks, and stable
-          <button type="button" (click)="handleWordClick('%cashview')" [disabled]="!canClaimWords || isFound('%cashview')" class="secret-word">
+          <button type="button" (click)="handleWordClick('%cashview')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('%cashview') }}
           </button>
           reporting when
-          <button type="button" (click)="handleWordClick('!fallback')" [disabled]="!canClaimWords || isFound('!fallback')" class="secret-word">
+          <button type="button" (click)="handleWordClick('!fallback')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('!fallback') }}
           </button>
           scenarios happen.
         </p>
         <p>
           Recovery playbooks blend
-          <button type="button" (click)="handleWordClick('@recovery')" [disabled]="!canClaimWords || isFound('@recovery')" class="secret-word">
+          <button type="button" (click)="handleWordClick('@recovery')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('@recovery') }}
           </button>
           plans with
-          <button type="button" (click)="handleWordClick('#sla')" [disabled]="!canClaimWords || isFound('#sla')" class="secret-word">
+          <button type="button" (click)="handleWordClick('#sla')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('#sla') }}
           </button>
           targets,
-          <button type="button" (click)="handleWordClick('$safehold')" [disabled]="!canClaimWords || isFound('$safehold')" class="secret-word">
+          <button type="button" (click)="handleWordClick('$safehold')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('$safehold') }}
           </button>
           controls, and
-          <button type="button" (click)="handleWordClick('%proof')" [disabled]="!canClaimWords || isFound('%proof')" class="secret-word">
+          <button type="button" (click)="handleWordClick('%proof')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('%proof') }}
           </button>
           evidence trails while
-          <button type="button" (click)="handleWordClick('!matchings')" [disabled]="!canClaimWords || isFound('!matchings')" class="secret-word">
+          <button type="button" (click)="handleWordClick('!matchings')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('!matchings') }}
           </button>
           and
-          <button type="button" (click)="handleWordClick('@autopayout')" [disabled]="!canClaimWords || isFound('@autopayout')" class="secret-word">
+          <button type="button" (click)="handleWordClick('@autopayout')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('@autopayout') }}
           </button>
           jobs are running.
         </p>
         <p>
           Advanced stacks include
-          <button type="button" (click)="handleWordClick('#retrylogic')" [disabled]="!canClaimWords || isFound('#retrylogic')" class="secret-word">
+          <button type="button" (click)="handleWordClick('#retrylogic')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('#retrylogic') }}
           </button>
           engines,
-          <button type="button" (click)="handleWordClick('$netting')" [disabled]="!canClaimWords || isFound('$netting')" class="secret-word">
+          <button type="button" (click)="handleWordClick('$netting')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('$netting') }}
           </button>
           rules,
-          <button type="button" (click)="handleWordClick('%stability')" [disabled]="!canClaimWords || isFound('%stability')" class="secret-word">
+          <button type="button" (click)="handleWordClick('%stability')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('%stability') }}
           </button>
           monitoring,
-          <button type="button" (click)="handleWordClick('!guardrails')" [disabled]="!canClaimWords || isFound('!guardrails')" class="secret-word">
+          <button type="button" (click)="handleWordClick('!guardrails')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('!guardrails') }}
           </button>
           policies, and
-          <button type="button" (click)="handleWordClick('@queueing')" [disabled]="!canClaimWords || isFound('@queueing')" class="secret-word">
+          <button type="button" (click)="handleWordClick('@queueing')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('@queueing') }}
           </button>
           discipline across a
-          <button type="button" (click)="handleWordClick('#signalmesh')" [disabled]="!canClaimWords || isFound('#signalmesh')" class="secret-word">
+          <button type="button" (click)="handleWordClick('#signalmesh')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('#signalmesh') }}
           </button>
           architecture that flags
-          <button type="button" (click)="handleWordClick('$variance')" [disabled]="!canClaimWords || isFound('$variance')" class="secret-word">
+          <button type="button" (click)="handleWordClick('$variance')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('$variance') }}
           </button>
           against
-          <button type="button" (click)="handleWordClick('%benchmark')" [disabled]="!canClaimWords || isFound('%benchmark')" class="secret-word">
+          <button type="button" (click)="handleWordClick('%benchmark')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('%benchmark') }}
           </button>
           goals so
-          <button type="button" (click)="handleWordClick('!finops')" [disabled]="!canClaimWords || isFound('!finops')" class="secret-word">
+          <button type="button" (click)="handleWordClick('!finops')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('!finops') }}
           </button>
           teams can ship from shared
-          <button type="button" (click)="handleWordClick('@playbooks')" [disabled]="!canClaimWords || isFound('@playbooks')" class="secret-word">
+          <button type="button" (click)="handleWordClick('@playbooks')" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord('@playbooks') }}
           </button>
           .
@@ -423,7 +423,7 @@
             <button
               type="button"
               (click)="handleWordClick(item.word)"
-              [disabled]="!canClaimWords || isFound(item.word)"
+              [disabled]="!canClaimWords"
               class="secret-word"
             >
               {{ displayWord(item.word) }}
@@ -443,7 +443,7 @@
         <button
           type="button"
           (click)="handleWordClick('@retenvo')"
-          [disabled]="!canClaimWords || isFound('@retenvo')"
+          [disabled]="!canClaimWords"
           class="secret-word"
         >
           {{ displayWord('@retenvo') }}
@@ -452,7 +452,7 @@
         <button
           type="button"
           (click)="handleWordClick('!cbn')"
-          [disabled]="!canClaimWords || isFound('!cbn')"
+          [disabled]="!canClaimWords"
           class="secret-word"
         >
           {{ displayWord('!cbn') }}
@@ -461,7 +461,7 @@
         <button
           type="button"
           (click)="handleWordClick('%ndic')"
-          [disabled]="!canClaimWords || isFound('%ndic')"
+          [disabled]="!canClaimWords"
           class="secret-word"
         >
           {{ displayWord('%ndic') }}
@@ -469,7 +469,7 @@
         <button
           type="button"
           (click)="handleWordClick(':silentnode')"
-          [disabled]="!canClaimWords || isFound(':silentnode')"
+          [disabled]="!canClaimWords"
           class="secret-word secret-word-faint"
         >
           {{ displayWord(':silentnode') }}
@@ -522,7 +522,7 @@
           <button
             type="button"
             (click)="handleWordClick(point.word)"
-            [disabled]="!canClaimWords || isFound(point.word)"
+            [disabled]="!canClaimWords"
             class="secret-word font-semibold"
           >
             {{ displayWord(point.word) }}

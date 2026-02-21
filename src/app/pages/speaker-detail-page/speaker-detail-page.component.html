@@ -23,7 +23,6 @@
               <button
                 type="button"
                 (click)="openClaimModal('%speaker')"
-                [disabled]="isFound('%speaker')"
                 class="secret-word"
               >
                 %speaker
@@ -36,7 +35,6 @@
             <button
               type="button"
               (click)="openClaimModal('%focus')"
-              [disabled]="isFound('%focus')"
               class="secret-word"
             >
               %focus
@@ -45,7 +43,6 @@
             <button
               type="button"
               (click)="openClaimModal('!brief')"
-              [disabled]="isFound('!brief')"
               class="secret-word"
             >
               !brief
@@ -64,7 +61,6 @@
                 <button
                   type="button"
                   (click)="openClaimModal('!insight')"
-                  [disabled]="isFound('!insight')"
                   class="secret-word"
                 >
                   !insight
@@ -78,7 +74,6 @@
             <button
               type="button"
               (click)="openClaimModal('$depth')"
-              [disabled]="isFound('$depth')"
               class="secret-word"
             >
               $depth

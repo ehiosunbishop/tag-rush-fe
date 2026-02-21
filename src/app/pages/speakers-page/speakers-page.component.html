@@ -5,11 +5,11 @@
     <p class="mt-3 max-w-4xl text-sm text-neutral-300">
       Meet the people shaping conversations around finance, business structure, visibility, and execution.
       Along the way, keep an eye for
-      <button type="button" (click)="handleWordClick('@speakerlane')" [disabled]="!canClaimWords || isFound('@speakerlane')" class="secret-word">
+      <button type="button" (click)="handleWordClick('@speakerlane')" [disabled]="!canClaimWords" class="secret-word">
         {{ displayWord('@speakerlane') }}
       </button>
       cues and
-      <button type="button" (click)="handleWordClick('#stageinsights')" [disabled]="!canClaimWords || isFound('#stageinsights')" class="secret-word">
+      <button type="button" (click)="handleWordClick('#stageinsights')" [disabled]="!canClaimWords" class="secret-word">
         {{ displayWord('#stageinsights') }}
       </button>
       moments.
@@ -38,7 +38,7 @@
         <p class="mt-2 text-sm text-neutral-300">
           {{ showcase.summary }}
           The session threads in
-          <button type="button" (click)="handleWordClick(showcase.word)" [disabled]="!canClaimWords || isFound(showcase.word)" class="secret-word">
+          <button type="button" (click)="handleWordClick(showcase.word)" [disabled]="!canClaimWords" class="secret-word">
             {{ displayWord(showcase.word) }}
           </button>
           insights for operators.
@@ -64,7 +64,7 @@
         <div class="mt-4 space-y-3">
           <div *ngFor="let note of activeShowcase.notes" class="rounded-xl border border-white/15 bg-black p-3 text-sm text-neutral-200">
             {{ note.label }}
-            <button type="button" (click)="handleWordClick(note.word)" [disabled]="!canClaimWords || isFound(note.word)" class="secret-word font-semibold">
+            <button type="button" (click)="handleWordClick(note.word)" [disabled]="!canClaimWords" class="secret-word font-semibold">
               {{ displayWord(note.word) }}
             </button>
           </div>

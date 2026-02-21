@@ -133,7 +133,7 @@ export class SpeakersPageComponent implements OnInit, OnDestroy {
     }
 
     const word = this.hiddenWords.find((item) => item.label === wordLabel);
-    if (!word || this.foundWords.has(word.label)) {
+    if (!word) {
       return;
     }
 
@@ -153,7 +153,4 @@ export class SpeakersPageComponent implements OnInit, OnDestroy {
     this.toastService.success(`${response.word} claimed (+${response.pointsAwarded}).`);
   }
 
-  isFound(word: string): boolean {
-    return this.foundWords.has(word);
-  }
 }
